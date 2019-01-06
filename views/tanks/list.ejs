@@ -1,0 +1,12 @@
+<h1>Tank List</h1>
+
+<ol>
+<% tanks.forEach(function(t) { %>
+	<li>
+		Name: <%= t.short_name %> | Nation: <%= t.nation %> | Tier: <%= t.tier %> | Type: <%= t.type %> <img src ="<%= t.images %>">
+		<form method="GET" action="show/<%= t.id %>">
+			<button>Details</button>
+		</form>
+	</li>
+<% }) %>
+</ol>
