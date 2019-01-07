@@ -1,12 +1,17 @@
+<% var packs = []; %>
+<% for (var package in packageNums) { %>
+	<% packs.push(packageNums[package]) %>
+<% } %>
+
+<% var packages = packs[0].packages %>
+
 <div class="container">
-	<h1><%= tank.short_name %></h1>
+	<ul><%= tank.short_name %>
+		<% for (var packId in packages) { %>
+			<li><%= packId %></li>
+			<!-- <li>Engine: <%= packId.engine.name %></li> -->
+		<% } %>
+	</ul>
 
 	<img src="<%= tank.images %>">
-	<ul>
-		<% packages.forEach(function(p) { %>
-			<li>
-				<%= p.engine.name %>
-			</li>
-		<% }) %>
-	</ul>
 </div>
