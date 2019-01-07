@@ -8,8 +8,8 @@
 <div class="container">
 	<ul><%= tank.short_name %>
 		<% for (var packId in packages) { %>
-			<li><%= packId %></li>
-			<!-- <li>Engine: <%= packId.engine.name %></li> -->
+
+			<li>Engine: <%= packages[packId].engine.name %></li>
 		<% } %>
 	</ul>
 

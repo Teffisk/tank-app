@@ -3,8 +3,18 @@ var router = express.Router();
 var db = require('../models');
 var request = require('request');
 
+// router.get('/tanks/find', function(req, res) {
+// 	res.query.nation
+// })
+
 router.get('/list', function(req, res) {
-	db.tank.findAll()
+	db.tank.findAll({
+		where: {
+			nation: req.query.nation,
+			tier: req.query.tier,
+			type: req.query.type
+		}
+	})
 	.then(function(tanks) {
 		res.render('tanks/list', { tanks: tanks })
 	})
@@ -13,6 +23,10 @@ router.get('/list', function(req, res) {
 		res.send("Error:", err)
 	})
 });
+
+router.get('/tanks', function(req, res) {
+	res.render('tanks/tanks');
+})
 
 router.get('/show/:id', function(req, res) {
 	var packageNums = [];
