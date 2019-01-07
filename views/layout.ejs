@@ -11,7 +11,7 @@
 	      <a href="#" class="brand-logo">World Of Tanks</a>
 	      <ul id="nav-mobile" class="right hide-on-med-and-down">
 	        <li><a href="/">Home</a></li>
-	        <li><a href="/tanks/tanks">Tanks</a></li>
+	        <li><a href="/tanks/">Tanks</a></li>
 	        <li><a href="#">Another</a></li>
 	      </ul>
 	    </div>
@@ -22,6 +22,12 @@
 	document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
+  });
+</script>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems);
   });
 </script>
 

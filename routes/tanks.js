@@ -24,7 +24,7 @@ router.get('/list', function(req, res) {
 	})
 });
 
-router.get('/tanks', function(req, res) {
+router.get('/', function(req, res) {
 	res.render('tanks/tanks');
 })
 
