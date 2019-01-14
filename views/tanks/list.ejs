@@ -1,15 +1,16 @@
-<h1>Tank List</h1>
-
-<ol>
-<% tanks.forEach(function(t) { %>
-	<li>
-		<%= t.name %> | <%= nation(t.nation) %> | Tier <%= t.tier %> | <%= type(t.type) %> <img src ="<%= t.images %>">
-		<form method="GET" action="show/<%= t.id %>">
-			<button>Details</button>
-		</form>
-	</li>
-<% }) %>
-</ol>
+<div class="container">	
+	<h1>Tank List</h1>
+	<ol>
+	<% tanks.forEach(function(t) { %>
+		<li>
+			<%= t.name %> | <%= nation(t.nation) %> | Tier <%= t.tier %> | <%= type(t.type) %> <img src ="<%= t.images %>">
+			<form method="GET" action="show/<%= t.id %>">
+				<button>Details</button>
+			</form>
+		</li>
+	<% }) %>
+	</ol>
+</div>
 
 <% function type(t){ %>
 	<% if (t == 'lightTank'){ %>
