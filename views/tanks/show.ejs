@@ -9,10 +9,11 @@
 <div class="container">
 	<h2><%= tank.short_name %></h2>
 	<img src="<%= tank.images %>">
+	<p><%= tank.description %></p>
 	<ul class="collapsible">Packages
 		<% for (var packId in packages) { %>
 			<li>
-				<div class="collapsible-header"><%= packageName[packId].type %><i class="material-icons"></i></div>
+				<div class="collapsible-header"><%= packageName[packId].type %> - <%= packageName[packId].name %><i class="material-icons"></i></div>
 				<div class="collapsible-body">
 					<div class="row">Hull Armor
 						<div class="sub-stats">
@@ -25,26 +26,75 @@
 							Rear- <%= packages[packId].armor.hull.rear %>mm
 						</div>
 					</div>
-					<div>Turret stats</div>
+					<div class="row">Turret stats
+						<div class="sub-stats">
+							Frontal Armor- <%= packages[packId].armor.turret.front %>mm
+						</div>
+						<div class="sub-stats">
+							Sides Armor- <%= packages[packId].armor.turret.sides %>mm
+						</div>
+						<div class="sub-stats">
+							Rear Armor- <%= packages[packId].armor.turret.rear %>mm
+						</div>
+						<div class="sub-stats">
+							Name- <%= packages[packId].turret.name%> (Tier <%= packages[packId].turret.tier %>)
+						</div>
+						<div class="sub-stats">
+							View Range- <%= packages[packId].turret.view_range %> meters
+						</div>
+						<div class="sub-stats">
+							Turret Traverse Speed- <%= packages[packId].turret.traverse_speed %> degrees per second
+						</div>
+					</div>
 					<div class="row">Gun Stats
 						<div class="sub-stats">
-							Name- <%= packages[packId].gun.name %>mm
+							Name- <%= packages[packId].gun.name %> (Tier <%= packages[packId].turret.tier %>)
 						</div>
 						<div class="sub-stats">
 							Caliber- <%= packages[packId].gun.caliber %>mm
 						</div>
 						<div class="sub-stats">
-							Gun Depression- <%= packages[packId].gun.move_down_arc %> degress
+							Rate of Fire- <%= packages[packId].gun.fire_rate %> per minute
+						</div>
+						<div class="sub-stats">
+							Accuracy- <%= packages[packId].gun.dispersion %>
+						</div>
+						<div class="sub-stats">
+							Gun Depression- <%= packages[packId].gun.move_down_arc %> degrees
 						</div>
 						<div class="sub-stats">
 							Gun Elevation- <%= packages[packId].gun.move_up_arc %> degrees
 						</div>
+					</div>
+					<div class="row">Ammo stats
+						<% packages[packId].shells.forEach(function(s){ %>
+							<div class="sub-stats">
+								<div class="sub-stats">
+									<%= s.type %>
+								</div>
+								<div class="subber-stats">
+									Alpha Damage- <%= s.damage %> (<%= (s.damage*.75).toFixed() %> - <%= (s.damage*1.25).toFixed() %>)
+								</div>
+								<div class="subber-stats">
+									Penetration- <%= s.penetration %>mm
+								</div>
+							</div>
+						<% }) %>
+					</div>
+					<div class="row">Engine stats
 						<div class="sub-stats">
-							Rate of Fire- <%= packages[packId].gun.fire_rate %> per minute
+							Name- <%= packages[packId].engine.name %> (Tier <%= packages[packId].engine.tier %>)
+						</div>
+						<div class="sub-stats">
+							Horsepower- <%= packages[packId].engine.power %>
+						</div>
+						<div class="sub-stats">
+							Power-to-Weight Ratio- <%= ((packages[packId].engine.power/packages[packId].weight)*1000).toFixed(2) %>
+						</div>
+						<div class="sub-stats">
+							Chance of Fire- <%= (packages[packId].engine.fire_chance)*100 %>%
 						</div>
 					</div>
-					<div>Ammo stats</div>
-					<div>Engine stats</div>
 					<div>Suspension stats</div>
 					<div>Radio stats</div>
 					<div>Crew stats</div>

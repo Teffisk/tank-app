@@ -1,0 +1,32 @@
+<div class="container">
+	<h1><%= account.nickname %>'s Career Stats</h1>
+	<a href="#"><h4>Vehicles</h4></a>
+	<ul>
+		<li>Trees Cut: <%= player.statistics.trees_cut %></li>
+		<li>Win Rate: <%= ((player.statistics.all.wins/player.statistics.all.battles)*100).toFixed(2) %>%
+		<li>Total Battles: <%= player.statistics.all.battles %></li>
+		<li>Wins: <%= player.statistics.all.wins %></li>
+		<li>Losses: <%= player.statistics.all.losses %></li>
+		<li>Draws: <%= (player.statistics.all.battles - player.statistics.all.wins - player.statistics.all.losses) %></li>
+		<li>Survival Rate: <%= ((player.statistics.all.survived_battles/player.statistics.all.battles)*100).toFixed(2) %>%</li>
+		<li>Player Rating: <%= player.global_rating %></li>
+		<li>Most XP: <%= player.statistics.max_xp %> XP in the <%= maxXpTank.name %></li>
+		<li>Most Kills: <%= player.statistics.max_frags %> in the <%= player.statistics.max_frags_tank_id %></li>
+		<li>Most Damage: <%= player.statistics.max_damage %> in the <%= player.statistics.max_damage_tank_id %></li>
+		<li>Last Battle Played: <%= convertDate(player.last_battle_time) %></li>
+		<li>Playing Since: <%= convertDate(player.created_at) %></li>
+	</ul>
+</div>
+
+<% function convertDate(stamp){ %>
+	<% var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; %>
+	<% var date = new Date(stamp*1000); %>
+	<% var year = date.getFullYear(); %>
+	<% var month = months_arr[date.getMonth()]; %>
+	<% var day = date.getDate(); %>
+	<% var hours = date.getHours(); %>
+	<% var minutes = "0" + date.getMinutes(); %>
+	<% var seconds = "0" + date.getSeconds(); %>
+	<% var displayDate = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2); %>
+	<% return displayDate %>
+<% } %>

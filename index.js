@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/tanks', require('./routes/tanks'));
-//app.use('/players', require('./routes/players'));
+app.use('/players', require('./routes/players'));
 
 
 
