@@ -3,10 +3,51 @@
 <ol>
 <% tanks.forEach(function(t) { %>
 	<li>
-		Name: <%= t.short_name %> | Nation: <%= t.nation %> | Tier: <%= t.tier %> | Type: <%= t.type %> <img src ="<%= t.images %>">
+		<%= t.name %> | <%= nation(t.nation) %> | Tier <%= t.tier %> | <%= type(t.type) %> <img src ="<%= t.images %>">
 		<form method="GET" action="show/<%= t.id %>">
 			<button>Details</button>
 		</form>
 	</li>
 <% }) %>
 </ol>
+
+<% function type(t){ %>
+	<% if (t == 'lightTank'){ %>
+		<% return 'Light Tank' %>
+	<% } else if (t == 'mediumTank'){ %>
+		<% return 'Medium Tank' %>
+	<% } else if (t == 'heavyTank'){ %>
+		<% return 'Heavy Tank' %>
+	<% } else if (t == 'AT-SPG'){ %>
+		<% return 'Tank Destroyer' %>		
+	<% } else if (t == 'SPG'){ %>
+		<% return 'Artillery' %>
+	<% } %>
+<% } %>
+
+
+<% function nation(n){ %>
+	<% if (n == 'usa'){ %>
+		<% return 'USA' %>
+	<% } else if (n == 'ussr'){ %>
+		<% return 'USSR' %>
+	<% } else if (n == 'germany'){ %>
+		<% return 'Germany' %>
+	<% } else if (n == 'uk'){ %>
+		<% return 'UK' %>		
+	<% } else if (n == 'china'){ %>
+		<% return 'China' %>
+	<% } else if (n == 'japan'){ %>
+		<% return 'Japan' %>
+	<% } else if (n == 'france'){ %>
+		<% return 'France' %>
+	<% } else if (n == 'sweden'){ %>
+		<% return 'Sweden' %>		
+	<% } else if (n == 'poland'){ %>
+		<% return 'Poland' %>
+	<% } else if (n == 'czech'){ %>
+		<% return 'Czech' %>		
+	<% } else if (n == 'merc'){ %>
+		<% return 'Mercenary' %>
+	<% } %>
+<% } %>

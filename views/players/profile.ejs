@@ -1,4 +1,5 @@
 <div class="container">
+
 	<h1><%= account.nickname %>'s Career Stats</h1>
 	<a href="#"><h4>Vehicles</h4></a>
 	<ul>
@@ -10,9 +11,9 @@
 		<li>Draws: <%= (player.statistics.all.battles - player.statistics.all.wins - player.statistics.all.losses) %></li>
 		<li>Survival Rate: <%= ((player.statistics.all.survived_battles/player.statistics.all.battles)*100).toFixed(2) %>%</li>
 		<li>Player Rating: <%= player.global_rating %></li>
-		<li>Most XP: <%= player.statistics.max_xp %> XP in the <%= maxXpTank.name %></li>
-		<li>Most Kills: <%= player.statistics.max_frags %> in the <%= player.statistics.max_frags_tank_id %></li>
-		<li>Most Damage: <%= player.statistics.max_damage %> in the <%= player.statistics.max_damage_tank_id %></li>
+		<li>Most XP: <%= player.statistics.max_xp %> XP in the <%= tanks[player.statistics.max_xp_tank_id].name %></li>
+		<li>Most Kills: <%= player.statistics.max_frags %> in the <%= tanks[player.statistics.max_frags_tank_id].name %></li>
+		<li>Most Damage: <%= player.statistics.max_damage %> in the <%= tanks[player.statistics.max_damage_tank_id].name %></li>
 		<li>Last Battle Played: <%= convertDate(player.last_battle_time) %></li>
 		<li>Playing Since: <%= convertDate(player.created_at) %></li>
 	</ul>

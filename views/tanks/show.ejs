@@ -13,7 +13,7 @@
 	<ul class="collapsible">Packages
 		<% for (var packId in packages) { %>
 			<li>
-				<div class="collapsible-header"><%= packageName[packId].type %> - <%= packageName[packId].name %><i class="material-icons"></i></div>
+				<div class="collapsible-header"><a href="#"></a><%= packageName[packId].type %> - <%= packageName[packId].name %><i class="material-icons"></i></div>
 				<div class="collapsible-body">
 					<div class="row">Hull Armor
 						<div class="sub-stats">
@@ -70,7 +70,7 @@
 						<% packages[packId].shells.forEach(function(s){ %>
 							<div class="sub-stats">
 								<div class="sub-stats">
-									<%= s.type %>
+									<%= ammo(s.type) %>
 								</div>
 								<div class="subber-stats">
 									Alpha Damage- <%= s.damage %> (<%= (s.damage*.75).toFixed() %> - <%= (s.damage*1.25).toFixed() %>)
@@ -103,3 +103,20 @@
 		<% } %>
 	</ul>
 </div>
+
+<% function ammo(type){ %>
+	<% if(type == 'ARMOR_PIERCING'){ %>
+		<% return 'AP' %>
+	<% } else if (type == 'ARMOR_PIERCING_CR'){ %>
+		<% return 'APCR' %>
+	<% } else if (type == 'HIGH_EXPLOSIVE'){ %>
+		<% return 'HE' %>
+	<% } else if (type == 'HOLLOW_CHARGE'){ %>
+		<% return 'HEAT' %>
+	<% } %>
+<% } %>
+
+
+
+
+

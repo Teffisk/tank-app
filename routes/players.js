@@ -12,26 +12,42 @@ router.get('/results/', function(req, res){
 	var player;
 	var urlAccount = `https://api-xbox-console.worldoftanks.com/wotx/account/list/?application_id=1713b4e1f4383b7a11a4f24c86f8cefa&search=${req.query.name}`
 	request(urlAccount, function(error, response, body){
-		account = JSON.parse(body).data
-		var urlPlayer = `https://api-xbox-console.worldoftanks.com/wotx/account/info/?application_id=1713b4e1f4383b7a11a4f24c86f8cefa&account_id=${account[0].account_id}`
-		request(urlPlayer, function(error, response, body){
-			result = JSON.parse(body).data
-			for (var accountId in result){
-				player = result[accountId]
-			}
-			console.log("time:",convertDate(1528047855))
-			console.log("battle time:", convertTime(52600))
-			db.tank.find({
-				where: { tank_id: player.statistics.max_frags_tank_id }
+		if (error || JSON.parse(body).meta.count != 1){
+			res.render('error', { error: error })
+		} else {
+			console.log("Seached Player:", req.query.name)
+			account = JSON.parse(body).data
+			console.log("Player's account", account[0])
+			var urlPlayer = `https://api-xbox-console.worldoftanks.com/wotx/account/info/?application_id=1713b4e1f4383b7a11a4f24c86f8cefa&account_id=${account[0].account_id}`
+			request(urlPlayer, function(error, response, body){
+				result = JSON.parse(body).data
+				for (var accountId in result){
+					player = result[accountId]
+				}
+				db.tank.findAll({
+					where: { tank_id: 
+						[
+							player.statistics.max_frags_tank_id,
+							player.statistics.max_damage_tank_id,
+							player.statistics.max_xp_tank_id
+						]
+					}
+				})
+				.then(function(tanks){
+					tanksObj = {};
+					tanks.forEach(function(t){
+						if(!tanksObj[t.tank_id]){
+							tanksObj[t.tank_id] = t;
+						}
+					})
+					res.render('players/profile', {
+						player: player,
+						account: account[0],
+						tanks: tanksObj,
+						});
+				})
 			})
-			.then(function(maxXpTank){
-				res.render('players/profile', {
-					player: player,
-					account: account[0],
-					maxXpTank: maxXpTank,
-					});
-			})
-		})
+		}
 	})
 });
 
