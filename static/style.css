@@ -9,3 +9,20 @@ nav {
  .subber-stats {
  	margin-left: 30px;
  }
+
+ .packages-title {
+ 	font-size: 24px !important;
+ }
+
+  .standard-values {
+ 	font-size: 24px !important;
+ }
+
+ .sub-title {
+ 	font-size: 24px;
+ }
+
+/*
+ .package-header {
+ 	font-weight: bold;
+ }*/
