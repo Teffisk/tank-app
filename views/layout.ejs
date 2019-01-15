@@ -13,10 +13,25 @@
 	        <li><a href="/">Home</a></li>
 	        <li><a href="/tanks/">Tanks</a></li>
 	        <li><a href="/players/">Players</a></li>
+	        <% if(!user) { %>
+		    <li><a href="/auth/login">Login</a></li>
+		    <li><a href="/auth/signup">Sign Up</a></li>
+		    <% } else { %>
+		    <li>Hello, <%= user.username %></li>
+		    	<% if(user.admin){ %>
+			    	<li><a href="/profile/admin">Admin</a></li>
+			   	<% } %>
+			    <li><a href="/profile">Profile</a></li>
+			    <li><a href="/auth/logout">Log Out</a></li>
+
+			<% } %>
 	      </ul>
 	    </div>
 	  </nav>
-	<%- body %>
+	  <div class="container">
+	  	<%- include partials/alerts %>
+		<%- body %>
+	</div>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {

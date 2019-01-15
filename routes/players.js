@@ -1,3 +1,6 @@
+//env variables
+require('dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 var request = require('request');
@@ -10,7 +13,8 @@ router.get('/', function(req, res){
 router.get('/results/', function(req, res){
 	var account;
 	var player;
-	var urlAccount = `https://api-xbox-console.worldoftanks.com/wotx/account/list/?application_id=1713b4e1f4383b7a11a4f24c86f8cefa&search=${req.query.name}`
+	console.log("DOTENV:", process.env.urlAccount)
+	var urlAccount = process.env.urlAccount + req.query.name
 	request(urlAccount, function(error, response, body){
 		if (error){
 			res.render('error', { error: error })
@@ -32,7 +36,7 @@ router.get('/results/', function(req, res){
 
 router.get('/account/:id', function(req, res){
 	var account = req.params.id
-	var urlPlayer = `https://api-xbox-console.worldoftanks.com/wotx/account/info/?application_id=1713b4e1f4383b7a11a4f24c86f8cefa&account_id=${account}`
+	var urlPlayer = process.env.urlPlayer + account
 	request(urlPlayer, function(error, response, body){
 		result = JSON.parse(body).data
 		for (var accountId in result){
