@@ -1,5 +1,12 @@
-<div class="container">
+<% if(!user.username){ %>
+	<form action="/profile/username" method="GET">
+		<label for="username">Your World of Tanks Xbox Username</label>
+		<input type="text" name="username">
+		<input type="hidden" name="email" value="<%= user.email %>">
+		<input type="submit" value="Submit">
+	</form>
+<% } else { %>
 	<h2><%= user.username %>'s Profile</h2>
+<% } %>
 
-	<img src="<%= user.image %>">
-</div>
+<img src="<%= user.image %>">

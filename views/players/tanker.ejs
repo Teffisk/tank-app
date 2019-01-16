@@ -1,7 +1,7 @@
 <h1><%= player.nickname %>'s Career Stats</h1>
 <a href="#"><h4>Vehicles</h4></a>
 
-<table>
+<table class="striped">
   <thead>
     <tr>
         <th>All Time</th>
@@ -12,11 +12,17 @@
   <tbody>
     <tr>
       <td>Trees Cut</td>
-      <td><%= player.statistics.trees_cut %></td>
+      <td>
+        <% if(player.statistics.trees_cut < 60001){ %>
+          <%= player.statistics.trees_cut %>
+        <% } else { %>
+          Over 60001 
+        <% } %>
+        </td>
     </tr>
     <tr>
       <td>Win Rate</td>
-      <td><%= ((player.statistics.all.wins/player.statistics.all.battles)*100).toFixed(2) %></td>
+      <td><%= ((player.statistics.all.wins/player.statistics.all.battles)*100).toFixed(2) %>%</td>
     </tr>
     <tr>
       <td>Battles</td>
@@ -36,7 +42,7 @@
     </tr>
     <tr>
       <td>Survival Rate</td>
-      <td><%= ((player.statistics.all.survived_battles/player.statistics.all.battles)*100).toFixed(2) %></td>
+      <td><%= ((player.statistics.all.survived_battles/player.statistics.all.battles)*100).toFixed(2) %>%</td>
     </tr>
     <tr>
       <td>Player Rating</td>

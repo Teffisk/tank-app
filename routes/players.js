@@ -58,7 +58,7 @@ router.get('/account/:id', function(req, res){
 					tanksObj[t.tank_id] = t;
 				}
 			})
-			res.render('players/profile', {
+			res.render('players/tanker', {
 				player: player,
 				tanks: tanksObj,
 			})

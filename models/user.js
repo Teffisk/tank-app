@@ -13,7 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    admin: DataTypes.BOOLEAN,
+    admin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     image: DataTypes.STRING
   }, {
     hooks: {
