@@ -1,5 +1,8 @@
 <h1><%= player.nickname %>'s Career Stats</h1>
-<a href="#"><h4>Vehicles</h4></a>
+<form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET">
+  <input type="hidden" name="player" value="<%= player.nickname %>">
+  <input type="submit" value="Recently Played Vehicles">
+</form>
 
 <table class="striped">
   <thead>

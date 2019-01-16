@@ -1,0 +1,67 @@
+<h1><%= player.nickname %>'s Recent Vehicles Page</h1>
+
+
+
+<% recentTanks.forEach(function(t){ %>
+<h4><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %><span class="tank-details">Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
+	| <%= dbTanks[(t.tank_id)] ? nation(dbTanks[(t.tank_id)].nation) : 'ERROR' %> | <%= dbTanks[(t.tank_id)] ? type(dbTanks[(t.tank_id)].type) : 'ERROR' %></span></h4>
+
+<ul>
+	<li>Number of Battles: <%= t.all.battles %></li>
+	<li>Win Rate: <%= ((t.all.wins/t.all.battles)*100).toFixed(2) %>%</li>
+	<li>Last Battle Date: <%= convertDate(t.last_battle_time) %>
+<% }) %>
+</ul>
+
+<% function convertDate(stamp){ %>
+	<% var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; %>
+	<% var date = new Date(stamp*1000); %>
+	<% var year = date.getFullYear(); %>
+	<% var month = months_arr[date.getMonth()]; %>
+	<% var day = date.getDate(); %>
+	<% var hours = date.getHours(); %>
+	<% var minutes = "0" + date.getMinutes(); %>
+	<% var seconds = "0" + date.getSeconds(); %>
+	<% var displayDate = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2); %>
+	<% return displayDate %>
+<% } %>
+
+<% function type(t){ %>
+	<% if (t == 'lightTank'){ %>
+		<% return 'Light Tank' %>
+	<% } else if (t == 'mediumTank'){ %>
+		<% return 'Medium Tank' %>
+	<% } else if (t == 'heavyTank'){ %>
+		<% return 'Heavy Tank' %>
+	<% } else if (t == 'AT-SPG'){ %>
+		<% return 'Tank Destroyer' %>		
+	<% } else if (t == 'SPG'){ %>
+		<% return 'Artillery' %>
+	<% } %>
+<% } %>
+
+<% function nation(n){ %>
+	<% if (n == 'usa'){ %>
+		<% return 'USA' %>
+	<% } else if (n == 'ussr'){ %>
+		<% return 'USSR' %>
+	<% } else if (n == 'germany'){ %>
+		<% return 'Germany' %>
+	<% } else if (n == 'uk'){ %>
+		<% return 'UK' %>		
+	<% } else if (n == 'china'){ %>
+		<% return 'China' %>
+	<% } else if (n == 'japan'){ %>
+		<% return 'Japan' %>
+	<% } else if (n == 'france'){ %>
+		<% return 'France' %>
+	<% } else if (n == 'sweden'){ %>
+		<% return 'Sweden' %>		
+	<% } else if (n == 'poland'){ %>
+		<% return 'Poland' %>
+	<% } else if (n == 'czech'){ %>
+		<% return 'Czech' %>		
+	<% } else if (n == 'merc'){ %>
+		<% return 'Mercenary' %>
+	<% } %>
+<% } %>

@@ -10,6 +10,11 @@ nav {
  	margin-left: 30px;
  }
 
+ .tank-details {
+ 	font-size: 18px;
+ 	padding-left: 10px;
+ }
+
  .packages-title {
  	font-size: 24px !important;
  }

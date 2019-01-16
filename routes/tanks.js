@@ -3,10 +3,6 @@ var router = express.Router();
 var db = require('../models');
 var request = require('request');
 
-// router.get('/tanks/find', function(req, res) {
-// 	res.query.nation
-// })
-
 router.get('/list', function(req, res) {
 	db.tank.findAll({
 		where: {

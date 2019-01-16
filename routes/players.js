@@ -12,8 +12,6 @@ router.get('/', function(req, res){
 
 router.get('/results/', function(req, res){
 	var account;
-	var player;
-	console.log("DOTENV:", process.env.urlAccount)
 	var urlAccount = process.env.urlAccount + req.query.name
 	request(urlAccount, function(error, response, body){
 		if (error){
@@ -66,12 +64,47 @@ router.get('/account/:id', function(req, res){
 	})
 })
 
-router.get('/recents', function(req, res){
-	res.render('recents');
-});
-
 router.get('/tanks', function(req, res){
 	res.render('tanks')
+});
+
+router.get('/account/:id/recent-vehicles', function(req, res){
+	var account = req.params.id
+	console.log("Player Name:",req.query.player)
+	var recentTanks;
+	var recentTankStats = [];
+	var urlRecent = process.env.urlRecentVehicles + account;
+	request(urlRecent, function(error, response, body){
+		result = JSON.parse(body).data;
+		
+		for(var id in result){
+			recentTanks = result[id];
+		}
+		var tankIds = recentTanks.map(function(tank){
+			return tank.tank_id;
+		});
+
+		db.tank.findAll({ 
+			where: { tank_id: tankIds },
+			attributes: ['tank_id', 'name', 'nation', 'tier', 'type']
+		})
+		.then(function(tanks){
+			let obj = {};
+			tanks.forEach((t) => {
+				obj[t.tank_id] = {
+					name: t.name,
+					tier: t.tier,
+					nation: t.nation,
+					type: t.type
+				};
+			});
+			var sortedTanks = recentTanks.sort(function(a, b){
+				return b.last_battle_time - a.last_battle_time;
+			});
+			// console.log(sortedTanks)
+			res.render('players/recent-vehicles', { recentTanks: sortedTanks, dbTanks: obj, player: player })
+		});
+	})
 })
 
 module.exports = router;
