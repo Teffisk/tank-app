@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('./config/passportConfig');
+require('dotenv').config();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
