@@ -133,7 +133,7 @@ router.get('/account/:id/current-grind', function(req, res){
 		var allTankIds = allTanks.map(function(tank){
 			return tank.tank_id.toString();
 		});
-		console.log("allTankIds", allTankIds)
+		//console.log("allTankIds", allTankIds)
 		var recentTankIds = recentTanks.map(function(tank){
 			return tank.tank_id;
 		});
@@ -170,7 +170,7 @@ router.get('/account/:id/current-grind', function(req, res){
 				}
 			})
 			grindTanks.forEach(function(t){
-				console.log(recentObj[t.tank_id].name)
+				//console.log(recentObj[t.tank_id].name)
 			})
 			grindTankIds = grindTanks.map(function(tank){
 				return tank.tank_id;
