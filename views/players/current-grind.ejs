@@ -1,14 +1,32 @@
-<h1>Player's tanks grinding in the last two weeks</h1>
+<% if(user && player.nickname == user.username){ %>
 
-<form action="/players/account/<%= user.account_id %>" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
-  <input type="submit" value="Career Stats">
-</form>
+  <h1>My Current Grind</h1>
 
-<form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
-  <input type="submit" value="Vehicles to Grind">
-</form>
+  <form action="/players/account/<%= user.account_id %>/" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Career Stats">
+  </form>
+
+  <form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Recently Played Vehicles">
+  </form>
+
+<% } else { %>
+
+  <h1><%= player.nickname %>'s Current Grind</h1>
+
+  <form action="/players/account/<%= player.account_id %>/" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="<%= player.nickname %>'s Career Stats">
+  </form>
+
+  <form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="<%= player.nickname %>'s Recently Played Vehicles">
+  </form>
+
+<% } %>
 
 
 <% recentTanks.forEach(function(t){ %>

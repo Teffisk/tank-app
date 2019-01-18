@@ -58,10 +58,7 @@ router.get('/account/:id', function(req, res){
 					tanksObj[t.tank_id] = t;
 				}
 			})
-			res.render('players/career-stats', {
-				player: player,
-				tanks: tanksObj,
-			})
+			res.render('players/career-stats', { player: player, tanks: tanksObj })
 		})
 	})
 })
@@ -104,14 +101,14 @@ router.get('/account/:id/recent-vehicles', function(req, res){
 				return b.last_battle_time - a.last_battle_time;
 			});
 			// console.log(sortedTanks)
-			res.render('players/recent-vehicles', { recentTanks: sortedTanks, dbTanks: obj, player: player })
+			res.render('players/recent-vehicles', { recentTanks: sortedTanks, dbTanks: obj })
 		});
 	})
 })
 
 router.get('/account/:id/current-grind', function(req, res){
 	var account = req.params.id
-	var player = req.query.player
+	// var player = req.query.player
 	var timestamp = Math.round((new Date()).getTime() / 1000);
 	var allTanks;
 	var recentTanks = [];
@@ -158,17 +155,18 @@ router.get('/account/:id/current-grind', function(req, res){
 					};
 			})
 			recentTanks.forEach(function(rT){
-				console.log(recentObj[rT.tank_id].name, "has this many next tanks", recentObj[rT.tank_id].next_tanks.length)
 				var countPlayed = 0;
-				recentObj[rT.tank_id].next_tanks.forEach(function(ntId){
-					if(allTankIds.indexOf(ntId)  != -1){
-						countPlayed++;
+				if(recentObj[rT.tank_id]){
+					recentObj[rT.tank_id].next_tanks.forEach(function(ntId){
+						if(allTankIds.indexOf(ntId)  != -1){
+							countPlayed++;
+						}
+					})
+					if(countPlayed === recentObj[rT.tank_id].next_tanks.length || recentObj[rT.tank_id].next_tanks.length === 0){
+						
+					} else {
+						grindTanks.push(rT)
 					}
-				})
-				if(countPlayed === recentObj[rT.tank_id].next_tanks.length || recentObj[rT.tank_id].next_tanks.length === 0){
-					
-				} else {
-					grindTanks.push(rT)
 				}
 			})
 			grindTanks.forEach(function(t){
@@ -195,7 +193,7 @@ router.get('/account/:id/current-grind', function(req, res){
 						is_premium: t.is_premium
 					};
 				})
-				res.render('players/current-grind', { recentTanks: grindTanks, timestamp: timestamp, dbTanks: grindObj, player: player })
+				res.render('players/current-grind', { recentTanks: grindTanks, timestamp: timestamp, dbTanks: grindObj })
 			})
 		})
 	})

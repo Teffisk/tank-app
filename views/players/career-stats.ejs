@@ -1,12 +1,33 @@
-<h1><%= player.nickname %>'s Career Stats</h1>
-<form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET">
-  <input type="hidden" name="player" value="<%= user %>">
-  <input type="submit" value="Recently Played Vehicles">
-</form>
-<form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
-  <input type="hidden" name="player" value="<%= user %>">
-  <input type="submit" value="Vehicles to Grind">
-</form>
+<% if(user && player.nickname == user.username){ %>
+
+  <h1>My Career Stats</h1>
+
+  <form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Recently Played Vehicles">
+  </form>
+
+  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Current Grind List">
+  </form>
+
+<% } else { %>
+
+  <h1><%= player.nickname %>'s Career Stats</h1>
+
+  <form action="/players/account/<%= player.account_id %>/" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="<%= player.nickname %>'s Recently Played Vehicles">
+  </form>
+
+  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="<%= player.nickname %>'s Current Grind List">
+  </form>
+
+<% } %>
+
 
 <table class="striped">
   <thead>

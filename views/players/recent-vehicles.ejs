@@ -1,23 +1,41 @@
-<h1><%= player.nickname %>'s Recent Vehicles Page</h1>
+<% if(user && player.nickname == user.username){ %>
 
-<form action="/players/account/<%= user.account_id %>" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
-  <input type="submit" value="Career Stats">
-</form>
+  <h1>My Recently Played Vehicles</h1>
 
-<form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
-  <input type="submit" value="Vehicles to Grind">
-</form>
+  <form action="/players/account/<%= user.account_id %>/" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Career Stats">
+  </form>
+
+  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Current Grind List">
+  </form>
+
+<% } else { %>
+
+  <h1><%= player.nickname %>'s Recently Played Vehicles</h1>
+
+  <form action="/players/account/<%= player.account_id %>/" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="<%= player.nickname %>'s Career Stats">
+  </form>
+
+  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="<%= player.nickname %>'s Current Grind List">
+  </form>
+
+<% } %>
 
 <% recentTanks.forEach(function(t){ %>
-<h4><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %><span class="tank-details">Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
-	| <%= dbTanks[(t.tank_id)] ? nation(dbTanks[(t.tank_id)].nation) : 'ERROR' %> | <%= dbTanks[(t.tank_id)] ? type(dbTanks[(t.tank_id)].type) : 'ERROR' %></span></h4>
+	<h4><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %><span class="tank-details">Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
+		| <%= dbTanks[(t.tank_id)] ? nation(dbTanks[(t.tank_id)].nation) : 'ERROR' %> | <%= dbTanks[(t.tank_id)] ? type(dbTanks[(t.tank_id)].type) : 'ERROR' %></span></h4>
 
-<ul>
-	<li>Number of Battles: <%= t.all.battles %></li>
-	<li>Win Rate: <%= ((t.all.wins/t.all.battles)*100).toFixed(2) %>%</li>
-	<li>Last Battle Date: <%= convertDate(t.last_battle_time) %>
+	<ul>
+		<li>Number of Battles: <%= t.all.battles %></li>
+		<li>Win Rate: <%= ((t.all.wins/t.all.battles)*100).toFixed(2) %>%</li>
+		<li>Last Battle Date: <%= convertDate(t.last_battle_time) %>
 <% }) %>
 </ul>
 
