@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models');
 var passport = require('../config/passportConfig');
+var request = require('request')
 
 router.get('/login', function (req, res) {
 	res.render('auth/login');
@@ -32,18 +33,19 @@ router.post('/signup', function(req, res) {
 		})
 		.spread(function(user, wasCreated, next){
 			if(wasCreated){
+				//Add account_id by calling the API
+				var urlAccount = process.env.urlAccount + user.username;
+				request(urlAccount, function(error, response, body){
+					var player = JSON.parse(body).data[0]
+					console.log("SENDING ACCOUNT ID REQUST TO API!", player.account_id)
+					db.user.update({ account_id: player.account_id }, { where: { username: player.nickname } })
+				});
 				passport.authenticate('local', {
 				successRedirect: '/profile',
 				successFlash: 'Yay, login successful!',
 				failureRedirect: '/auth/login',
 				failureFlash: 'Invalid Credentials'
 				})(req, res, next);
-				//Add account_id by calling the API
-				var urlAccount = process.env.urlAccount + req.query.name;
-				request(urlAccount, function(error, response, body){
-					var player = JSON.parse(body).data[0]
-					db.user.update({ account_id: player.account_id }, { where: { username: player.nickname } })
-				});
 			} else {
 				req.flash('error', 'Email already in use.');
 				res.render('auth/signup', { previousData: req.body, alerts: req.flash() });

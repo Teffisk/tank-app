@@ -8,6 +8,7 @@ var db = require('../models');
 var request = require('request');
 
 router.get('/', loggedIn, function(req, res){
+	console.log(req.user.account_id)
 	res.render("profile")
 });
 

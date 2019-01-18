@@ -1,11 +1,11 @@
 <h1>Player's tanks grinding in the last two weeks</h1>
 
-<form action="/players/account/<%= player.account_id %>" method="GET">
+<form action="/players/account/<%= user.account_id %>" method="GET">
   <input type="hidden" name="player" value="<%= player.nickname %>">
   <input type="submit" value="Career Stats">
 </form>
 
-<form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+<form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
   <input type="hidden" name="player" value="<%= player.nickname %>">
   <input type="submit" value="Vehicles to Grind">
 </form>

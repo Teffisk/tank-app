@@ -162,20 +162,13 @@ router.get('/account/:id/current-grind', function(req, res){
 				var countPlayed = 0;
 				recentObj[rT.tank_id].next_tanks.forEach(function(ntId){
 					if(allTankIds.indexOf(ntId)  != -1){
-						//console.log("One next tank of", recentObj[rT.tank_id].name, "has been played");
-						console.log("countPlayed went up!!!")
 						countPlayed++;
 					}
 				})
 				if(countPlayed === recentObj[rT.tank_id].next_tanks.length || recentObj[rT.tank_id].next_tanks.length === 0){
-					//remove rT from recentTanks
-					//recentTanks.splice(recentTanks.indexOf(rT), 1)
-					//console.log("The next tanks for ", recentObj[rT.tank_id].name, "is", recentObj[rT.tank_id].next_tanks)
-					//console.log("Recent Tank being removed:", recentObj[rT.tank_id].name)
+					
 				} else {
 					grindTanks.push(rT)
-					//console.log('The next tanks for ' + recentObj[rT.tank_id].name + ' is tank Id ' + recentObj[rT.tank_id].next_tanks);
-					//console.log("Postion of the next tank in allTankIds", allTankIds.indexOf(recentObj[rT.tank_id].next_tanks))
 				}
 			})
 			grindTanks.forEach(function(t){
@@ -232,31 +225,31 @@ function convertTime(stamp){
 	return minutes+':'+remainder
 }
 
-//Input a tank and output the following tank Id
-function nextTanks(t){
-	var nextTankIds
-	db.tank.find({ where: { tank_id: t.tank_id }})
-	.then(function(tank){
-		console.log("!!!!!",tank.next_tanks);
-		return ["a", "b", "c"];
-		// return tank.next_tanks;
-	})
-	.catch(function(err){
-		console.log(err)
-	})
-};
+// //Input a tank and output the following tank Id
+// function nextTanks(t){
+// 	var nextTankIds
+// 	db.tank.find({ where: { tank_id: t.tank_id }})
+// 	.then(function(tank){
+// 		console.log("!!!!!",tank.next_tanks);
+// 		return ["a", "b", "c"];
+// 		// return tank.next_tanks;
+// 	})
+// 	.catch(function(err){
+// 		console.log(err)
+// 	})
+// };
 
-function toKeep(tank){
-	let played = 0;
-	tank.next_tanks.forEach(function(t){
-		if(recentTankIds.indexOf(t) > -1){
-			played++;
-		}
-	})
-	if (played < tank.next_tanks){
-		return true
-	}
-};
+// function toKeep(tank){
+// 	let played = 0;
+// 	tank.next_tanks.forEach(function(t){
+// 		if(recentTankIds.indexOf(t) > -1){
+// 			played++;
+// 		}
+// 	})
+// 	if (played < tank.next_tanks){
+// 		return true
+// 	}
+// };
 
 
 

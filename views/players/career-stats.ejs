@@ -1,10 +1,10 @@
 <h1><%= player.nickname %>'s Career Stats</h1>
-<form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
+<form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET">
+  <input type="hidden" name="player" value="<%= user %>">
   <input type="submit" value="Recently Played Vehicles">
 </form>
-<form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
+<form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
+  <input type="hidden" name="player" value="<%= user %>">
   <input type="submit" value="Vehicles to Grind">
 </form>
 

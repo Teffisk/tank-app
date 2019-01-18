@@ -12,17 +12,17 @@
 
 <img src="<%= user.image %>">
 
-<form action="/players/account/<%= player.account_id %>" method="GET">
-  <input type="hidden" name="player" value="<%= user.username %>">
+<form action="/players/account/<%= user.account_id %>" method="GET">
+  <input type="hidden" name="player" value="<%= user %>">
   <input type="submit" value="My Career Stats">
 </form>
 
-<form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET">
-  <input type="hidden" name="player" value="<%= user.username %>">
+<form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET">
+  <input type="hidden" name="player" value="<%= user %>">
   <input type="submit" value="My Recently Played Vehicles">
 </form>
 
-<form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
-  <input type="hidden" name="player" value="<%= user.username %>">
+<form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
+  <input type="hidden" name="player" value="<%= user %>">
   <input type="submit" value="My Vehicles to Grind">
 </form>
