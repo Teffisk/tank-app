@@ -39,12 +39,6 @@ app.use('/players', require('./routes/players'));
 app.use('/auth', require('./routes/auth'));
 app.use('/profile', require('./routes/profile'));
 
-app.use(function(req, res, next){
-	res.locals.alerts = req.flash();
-	res.locals.user = req.user;
-	next();
-});
-
 
 
 app.listen(3000)

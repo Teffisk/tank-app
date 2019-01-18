@@ -6,13 +6,15 @@ var router = express.Router();
 var request = require('request');
 var db = require('../models');
 
+var twoWeeks = 1209600;
+
 router.get('/', function(req, res){
 	res.render('players/search');
 });
 
 router.get('/results/', function(req, res){
 	var account;
-	var urlAccount = process.env.urlAccount + req.query.name
+	var urlAccount = process.env.urlAccount + req.query.name;
 	request(urlAccount, function(error, response, body){
 		if (error){
 			res.render('error', { error: error })
@@ -56,7 +58,7 @@ router.get('/account/:id', function(req, res){
 					tanksObj[t.tank_id] = t;
 				}
 			})
-			res.render('players/tanker', {
+			res.render('players/career-stats', {
 				player: player,
 				tanks: tanksObj,
 			})
@@ -107,6 +109,106 @@ router.get('/account/:id/recent-vehicles', function(req, res){
 	})
 })
 
+router.get('/account/:id/current-grind', function(req, res){
+	var account = req.params.id
+	var player = req.query.player
+	var timestamp = Math.round((new Date()).getTime() / 1000);
+	var allTanks;
+	var recentTanks = [];
+	var grindTankIds = [];
+	var grindTanks = [];
+	var urlRecent = process.env.urlRecentVehicles + account;
+
+
+	
+	request(urlRecent, function(error, response, body){
+		result = JSON.parse(body).data;
+		for(var id in result){
+			allTanks = result[id];
+		}
+		//Filter allTanks to only tanks played in the last two weeks
+		allTanks.forEach(function(t){
+			if(timestamp - t.last_battle_time < twoWeeks){
+				recentTanks.push(t)
+			}
+		});
+		//filter recentTanks to an array that only contains the recentTanks Ids	
+		var allTankIds = allTanks.map(function(tank){
+			return tank.tank_id.toString();
+		});
+		console.log("allTankIds", allTankIds)
+		var recentTankIds = recentTanks.map(function(tank){
+			return tank.tank_id;
+		});
+		//console.log("RecentTankIds:", recentTankIds)
+		db.tank.findAll({ 
+			where: { tank_id: recentTankIds },
+			attributes: ['tank_id', 'name', 'nation', 'tier', 'type', 'next_tanks']
+		})
+		.then(function(tanks){
+			let recentObj = {};
+			tanks.forEach((t) => {
+				recentObj[t.tank_id] = {
+					name: t.name,
+					tier: t.tier,
+					nation: t.nation,
+					type: t.type,
+					next_tanks: t.next_tanks,
+					is_premium: t.is_premium
+					};
+			})
+			recentTanks.forEach(function(rT){
+				console.log(recentObj[rT.tank_id].name, "has this many next tanks", recentObj[rT.tank_id].next_tanks.length)
+				var countPlayed = 0;
+				recentObj[rT.tank_id].next_tanks.forEach(function(ntId){
+					if(allTankIds.indexOf(ntId)  != -1){
+						//console.log("One next tank of", recentObj[rT.tank_id].name, "has been played");
+						console.log("countPlayed went up!!!")
+						countPlayed++;
+					}
+				})
+				if(countPlayed === recentObj[rT.tank_id].next_tanks.length || recentObj[rT.tank_id].next_tanks.length === 0){
+					//remove rT from recentTanks
+					//recentTanks.splice(recentTanks.indexOf(rT), 1)
+					//console.log("The next tanks for ", recentObj[rT.tank_id].name, "is", recentObj[rT.tank_id].next_tanks)
+					//console.log("Recent Tank being removed:", recentObj[rT.tank_id].name)
+				} else {
+					grindTanks.push(rT)
+					//console.log('The next tanks for ' + recentObj[rT.tank_id].name + ' is tank Id ' + recentObj[rT.tank_id].next_tanks);
+					//console.log("Postion of the next tank in allTankIds", allTankIds.indexOf(recentObj[rT.tank_id].next_tanks))
+				}
+			})
+			grindTanks.forEach(function(t){
+				console.log(recentObj[t.tank_id].name)
+			})
+			grindTankIds = grindTanks.map(function(tank){
+				return tank.tank_id;
+			});
+		})
+		.then(function(){
+			db.tank.findAll({
+				where: { tank_id: grindTankIds },
+				attributes: ['tank_id', 'name', 'nation', 'tier', 'type', 'next_tanks']
+			})
+			.then(function(tanks){
+				let grindObj = {};
+				tanks.forEach((t) => {
+					grindObj[t.tank_id] = {
+						name: t.name,
+						tier: t.tier,
+						nation: t.nation,
+						type: t.type,
+						next_tanks: t.next_tanks.filter,
+						is_premium: t.is_premium
+					};
+				})
+				res.render('players/current-grind', { recentTanks: grindTanks, timestamp: timestamp, dbTanks: grindObj, player: player })
+			})
+		})
+	})
+})
+
+
 module.exports = router;
 
 
@@ -129,6 +231,32 @@ function convertTime(stamp){
 	var remainder = seconds%60;
 	return minutes+':'+remainder
 }
+
+//Input a tank and output the following tank Id
+function nextTanks(t){
+	var nextTankIds
+	db.tank.find({ where: { tank_id: t.tank_id }})
+	.then(function(tank){
+		console.log("!!!!!",tank.next_tanks);
+		return ["a", "b", "c"];
+		// return tank.next_tanks;
+	})
+	.catch(function(err){
+		console.log(err)
+	})
+};
+
+function toKeep(tank){
+	let played = 0;
+	tank.next_tanks.forEach(function(t){
+		if(recentTankIds.indexOf(t) > -1){
+			played++;
+		}
+	})
+	if (played < tank.next_tanks){
+		return true
+	}
+};
 
 
 

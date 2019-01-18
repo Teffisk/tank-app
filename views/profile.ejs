@@ -6,22 +6,23 @@
 		<input type="submit" value="Submit">
 	</form>
 <% } else { %>
-	<h2><%= user.username %>'s Profile</h2>
+	<h2><%= user.username %>'s Profile and account # <%= user.account_id %></h2>
 <% } %>
+
 
 <img src="<%= user.image %>">
 
 <form action="/players/account/<%= player.account_id %>" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
+  <input type="hidden" name="player" value="<%= user.username %>">
   <input type="submit" value="My Career Stats">
 </form>
 
 <form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
+  <input type="hidden" name="player" value="<%= user.username %>">
   <input type="submit" value="My Recently Played Vehicles">
 </form>
 
-<form action="/players/account/<%= player.account_id %>/####" method="GET">
-  <input type="hidden" name="player" value="<%= player.nickname %>">
+<form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+  <input type="hidden" name="player" value="<%= user.username %>">
   <input type="submit" value="My Vehicles to Grind">
 </form>

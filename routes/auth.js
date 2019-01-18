@@ -38,6 +38,12 @@ router.post('/signup', function(req, res) {
 				failureRedirect: '/auth/login',
 				failureFlash: 'Invalid Credentials'
 				})(req, res, next);
+				//Add account_id by calling the API
+				var urlAccount = process.env.urlAccount + req.query.name;
+				request(urlAccount, function(error, response, body){
+					var player = JSON.parse(body).data[0]
+					db.user.update({ account_id: player.account_id }, { where: { username: player.nickname } })
+				});
 			} else {
 				req.flash('error', 'Email already in use.');
 				res.render('auth/signup', { previousData: req.body, alerts: req.flash() });

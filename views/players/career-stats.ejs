@@ -3,6 +3,10 @@
   <input type="hidden" name="player" value="<%= player.nickname %>">
   <input type="submit" value="Recently Played Vehicles">
 </form>
+<form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+  <input type="hidden" name="player" value="<%= player.nickname %>">
+  <input type="submit" value="Vehicles to Grind">
+</form>
 
 <table class="striped">
   <thead>

@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       is_premium: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
       },
       tag: {
         type: Sequelize.STRING
@@ -43,6 +43,9 @@ module.exports = {
       },
       images: {
         type: Sequelize.STRING
+      },
+      next_tanks: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       createdAt: {
         allowNull: false,

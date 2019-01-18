@@ -7,12 +7,13 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     price_gold: DataTypes.INTEGER,
     nation: DataTypes.STRING,
-    is_premium: DataTypes.STRING,
+    is_premium: DataTypes.BOOLEAN,
     tag: DataTypes.STRING,
     price_credit: DataTypes.INTEGER,
     type: DataTypes.STRING,
     tier: DataTypes.INTEGER,
-    images: DataTypes.STRING
+    images: DataTypes.STRING,
+    next_tanks: DataTypes.ARRAY(DataTypes.STRING)
   }, {});
   tank.associate = function(models) {
     // associations can be defined here
