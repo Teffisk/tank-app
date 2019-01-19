@@ -1,3 +1,4 @@
+<h2>My Profile</h2>
 <% if(!user.username){ %>
 	<form action="/profile/username" method="GET">
 		<label for="username">Your World of Tanks Xbox Username</label>
@@ -6,23 +7,25 @@
 		<input type="submit" value="Submit">
 	</form>
 <% } else { %>
-	<h2><%= user.username %>'s Profile and account # <%= user.account_id %></h2>
+	<h4><%= user.username %></h4>
 <% } %>
 
+<div>
+	<form action="/players/account/<%= user.account_id %>" method="GET" class="player-page-button">
+	  <input type="hidden" name="player" value="<%= user %>">
+	  <input type="submit" value="My Career Stats" class="waves-effect waves-light btn">
+	</form>
 
-<img src="<%= user.image %>">
+	<form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET" class="player-page-button">
+	  <input type="hidden" name="player" value="<%= user %>">
+	  <input type="submit" value="My Recently Played Vehicles" class="waves-effect waves-light btn">
+	</form>
 
-<form action="/players/account/<%= user.account_id %>" method="GET">
-  <input type="hidden" name="player" value="<%= user %>">
-  <input type="submit" value="My Career Stats">
-</form>
+	<form action="/players/account/<%= user.account_id %>/current-grind" method="GET" class="player-page-button">
+	  <input type="hidden" name="player" value="<%= user %>">
+	  <input type="submit" value="My Vehicles to Grind" class="waves-effect waves-light btn">
+	</form>
+</div>
 
-<form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET">
-  <input type="hidden" name="player" value="<%= user %>">
-  <input type="submit" value="My Recently Played Vehicles">
-</form>
 
-<form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
-  <input type="hidden" name="player" value="<%= user %>">
-  <input type="submit" value="My Vehicles to Grind">
-</form>
+<img src="<%= user.image %>" class="profile-pic">

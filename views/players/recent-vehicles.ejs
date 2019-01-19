@@ -2,42 +2,54 @@
 
   <h1>My Recently Played Vehicles</h1>
 
-  <form action="/players/account/<%= user.account_id %>/" method="GET">
+  <form action="/players/account/<%= user.account_id %>/" method="GET"  class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Career Stats">
+    <input type="submit" value="My Career Stats" class="waves-effect waves-light btn">
   </form>
 
-  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
+  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET"  class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Current Grind List">
+    <input type="submit" value="My Current Grind List" class="waves-effect waves-light btn">
   </form>
 
 <% } else { %>
 
   <h1><%= player.nickname %>'s Recently Played Vehicles</h1>
 
-  <form action="/players/account/<%= player.account_id %>/" method="GET">
+  <form action="/players/account/<%= player.account_id %>/" method="GET"  class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Career Stats">
+    <input type="submit" value="<%= player.nickname %>'s Career Stats" class="waves-effect waves-light btn">
   </form>
 
-  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET"  class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Current Grind List">
+    <input type="submit" value="<%= player.nickname %>'s Current Grind List" class="waves-effect waves-light btn">
   </form>
 
 <% } %>
 
 <% recentTanks.forEach(function(t){ %>
-	<h4><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %><span class="tank-details">Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
-		| <%= dbTanks[(t.tank_id)] ? nation(dbTanks[(t.tank_id)].nation) : 'ERROR' %> | <%= dbTanks[(t.tank_id)] ? type(dbTanks[(t.tank_id)].type) : 'ERROR' %></span></h4>
+	<div class="player-tank-display">
+		<span class="tank-display-name"><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %>
+			<span class="tank-details">Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
+			| <%= dbTanks[(t.tank_id)] ? nation(dbTanks[(t.tank_id)].nation) : 'ERROR' %> 
+			| <%= dbTanks[(t.tank_id)] ? type(dbTanks[(t.tank_id)].type) : 'ERROR' %>
+			</span>
+		</span>
 
-	<ul>
-		<li>Number of Battles: <%= t.all.battles %></li>
-		<li>Win Rate: <%= ((t.all.wins/t.all.battles)*100).toFixed(2) %>%</li>
-		<li>Last Battle Date: <%= convertDate(t.last_battle_time) %>
+		<ul>
+			<li>Number of Battles: <%= t.all.battles %></li>
+			<li>Win Rate: <%= ((t.all.wins/t.all.battles)*100).toFixed(2) %>%</li>
+			<li>Last Battle Date: <%= convertDate(t.last_battle_time) %></li>
+		</ul>
+		<% if(dbTanks[(t.tank_id)]){ %>
+			<form action="/tanks/show/<%= dbTanks[(t.tank_id)].id %>" method="GET">
+				<input type="submit" class="player-div-button" value="">
+			</form>
+		<% } %>
+	</div>
 <% }) %>
-</ul>
+
 
 <% function convertDate(stamp){ %>
 	<% var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; %>

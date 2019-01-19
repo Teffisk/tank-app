@@ -26,7 +26,10 @@ router.get('/', function(req, res) {
 
 router.get('/show/:id', function(req, res) {
 	var packageNums = [];
-	var tank = db.tank.findByPk(req.params.id).then(function(tank){
+	console.log("PARAMS passed to tank list route:",req.params.id)
+	db.tank.findByPk(req.params.id)
+	.then(function(tank){
+		console.log(tank.name)
 		const urlPackages = `https://api-xbox-console.worldoftanks.com/wotx/encyclopedia/vehiclepackages/?application_id=1713b4e1f4383b7a11a4f24c86f8cefa&tank_id=${tank.tank_id}`;
 		request(urlPackages, function(error, response, body){
 			var packageData = JSON.parse(body).data

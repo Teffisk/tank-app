@@ -21,8 +21,9 @@ request(url, function(error, response, body){
 		console.log("From the DB:",nextTanks)
 		var images = t.images.big_icon
 		t.images = images
-		db.tank.create({
-			tank_id: t.tank_id,
+		db.tank.findOrCreate({
+			where: { tank_id: t.tank_id },
+			defaults: {
 			short_name: t.short_name,
 			name: t.name,
 			description: t.description,
@@ -35,6 +36,7 @@ request(url, function(error, response, body){
 			tier: t.tier,
 			images: t.images,
 			next_tanks: nextTanks
+			}			
 		})
 	})
 })

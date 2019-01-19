@@ -1,14 +1,14 @@
 <h1>Tank List</h1>
-<ol>
+
 <% tanks.forEach(function(t) { %>
-	<li>
-		<%= t.name %> | <%= nation(t.nation) %> | Tier <%= t.tier %> | <%= type(t.type) %> <img src ="<%= t.images %>">
-		<form method="GET" action="show/<%= t.id %>">
-			<button>Details</button>
-		</form>
-	</li>
+<div class="tank-display">
+	<span class="tank-display-name"><%= t.name %></span><span class="tank-details"> | <%= nation(t.nation) %> | Tier <%= t.tier %> | <%= type(t.type) %></span> <img src ="<%= t.images %>">
+	<form method="GET" action="show/<%= t.id %>">
+		<input type="submit" class="tank-div-button" value="">
+	</form>
+</div>
 <% }) %>
-</ol>
+
 
 <% function type(t){ %>
 	<% if (t == 'lightTank'){ %>

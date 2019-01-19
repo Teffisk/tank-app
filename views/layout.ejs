@@ -8,20 +8,19 @@
 <body>
 	<nav>
 	    <div class="nav-wrapper">
-	      <a href="#" class="brand-logo title-btn">World Of Tanks Companion App</a>
+	      <a href="/" class="brand-logo title-btn nav-link">World Of Tanks Companion</a>
 	      <ul id="nav-mobile" class="right hide-on-med-and-down">
-	        <li><a href="/">Home</a></li>
-	        <li><a href="/tanks/">Tanks</a></li>
-	        <li><a href="/players/">Players</a></li>
+	        <li><a href="/tanks/" class="nav-link">Tanks</a></li>
+	        <li><a href="/players/" class="nav-link">Players</a></li>
 	        <% if(!user) { %>
-		    <li><a href="/auth/login">Login</a></li>
-		    <li><a href="/auth/signup">Sign Up</a></li>
+		    <li><a href="/auth/login" class="nav-link">Login</a></li>
+		    <li><a href="/auth/signup" class="nav-link">Sign Up</a></li>
 		    <% } else { %>
 		    	<% if(user.admin){ %>
-			    	<li><a href="/profile/admin">Admin</a></li>
+			    	<li><a href="/profile/admin" class="nav-link">Admin</a></li>
 			   	<% } %>
-			    <li><a href="/profile"><%= user.username %></a></li>
-			    <li><a href="/auth/logout">Log Out</a></li>
+			    <li><a href="/profile" class="nav-link"><%= user.username %></a></li>
+			    <li><a href="/auth/logout" class="nav-link">Log Out</a></li>
 
 			<% } %>
 	      </ul>

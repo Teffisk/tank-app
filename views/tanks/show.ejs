@@ -9,6 +9,12 @@
 
 <h1><%= tank.name %> <span class="sub-title">Tier <%= tank.tier %> | <%= nation(tank.nation) %> | <%= type(tank.type) %></span></h1>
 <img src="<%= tank.images %>">
+<% if(tank.is_premium == false){ %>
+	<h6>Tech Tree Tank | Silver Price: <%= tank.price_credit %></h6>
+<% } else { %>
+	<h6>Premium Tank | Gold Price: <%= tank. price_gold %></h6>
+ <% } %>
+
 <p><%= tank.description %></p>
 <% for (var packId in packages) { %>
 	<table class="striped"><span class="standard-values">Base Stats</span>

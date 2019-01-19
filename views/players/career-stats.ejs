@@ -1,29 +1,30 @@
 <% if(user && player.nickname == user.username){ %>
 
-  <h1>My Career Stats</h1>
-
-  <form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
+<h1>My Career Stats</h1>
+<span>
+  <form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET" class="player-page-button">
+    <input type="hidden" name="player" value="<%= player.nickname %>" class="waves-effect waves-light btn">
     <input type="submit" value="My Recently Played Vehicles">
   </form>
 
-  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
+  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET" class="player-page-button">
+    <input type="hidden" name="player" value="<%= player.nickname %>" class="waves-effect waves-light btn">
     <input type="submit" value="My Current Grind List">
   </form>
+</span>
 
 <% } else { %>
 
-  <h1><%= player.nickname %>'s Career Stats</h1>
+<h1><%= player.nickname %>'s Career Stats</h1>
 
-  <form action="/players/account/<%= player.account_id %>/" method="GET">
+  <form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET" class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Recently Played Vehicles">
+    <input type="submit" value="<%= player.nickname %>'s Recently Played Vehicles" class="waves-effect waves-light btn">
   </form>
 
-  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET" class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Current Grind List">
+    <input type="submit" value="<%= player.nickname %>'s Current Grind List" class="waves-effect waves-light btn">
   </form>
 
 <% } %>
