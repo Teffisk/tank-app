@@ -12,22 +12,22 @@ router.get('/', loggedIn, function(req, res){
 	res.render("profile")
 });
 
-// router.get('/admin', isAdmin, function(req, res){
-// 	res.render('admin');
-// });
+router.get('/admin', isAdmin, function(req, res){
+	res.render('admin');
+});
 
-// router.get('/username', function(req, res){
-// 	request()
-// 	db.user.update({
-// 		username: req.query.username
-// 	}, {
-// 		where: { email: req.query.email 
-// 		}
-// 	})
-// 	.then(function(user){
-// 		res.redirect('/profile')
-// 	})
-// })
+router.get('/username', function(req, res){
+	request()
+	db.user.update({
+		username: req.query.username
+	}, {
+		where: { email: req.query.email 
+		}
+	})
+	.then(function(user){
+		res.redirect('/profile')
+	})
+})
 
 
 module.exports = router
