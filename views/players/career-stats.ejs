@@ -3,13 +3,13 @@
 <h1>My Career Stats</h1>
 <span>
   <form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>" class="waves-effect waves-light btn">
-    <input type="submit" value="My Recently Played Vehicles">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Recently Played Vehicles" class="waves-effect waves-light btn">
   </form>
 
   <form action="/players/account/<%= user.account_id %>/current-grind" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>" class="waves-effect waves-light btn">
-    <input type="submit" value="My Current Grind List">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="My Current Grind List" class="waves-effect waves-light btn">
   </form>
 </span>
 

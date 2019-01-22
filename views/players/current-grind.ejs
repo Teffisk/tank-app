@@ -1,6 +1,7 @@
 <% if(user && player.nickname == user.username){ %>
 
   <h1>My Current Grind</h1>
+  <h6>These are the tech tree tanks that you have played in the last two weeks, that have a subsequent tank haven't been played.</h6>
 
   <form action="/players/account/<%= user.account_id %>/" method="GET" class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">
@@ -15,6 +16,7 @@
 <% } else { %>
 
   <h1><%= player.nickname %>'s Current Grind</h1>
+   <h6>These are the tech tree tanks that <%= player.nickname %> have played in the last two weeks, that have a subsequent tank haven't been played.</h6>
 
   <form action="/players/account/<%= player.account_id %>/" method="GET" class="player-page-button">
     <input type="hidden" name="player" value="<%= player.nickname %>">

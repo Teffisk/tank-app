@@ -31,6 +31,7 @@ nav {
 
 .homepage-tanks {
 	border: 3px solid black;
+	border-radius: 3px;
 	display: inline-block;
 	margin: 5px;
 	color: black;
@@ -43,6 +44,7 @@ nav {
 
 .homepage-players {
 	border: 3px solid black;
+	border-radius: 3px;
 	display: inline-block;
 	margin: 5px;
 	color: black;
