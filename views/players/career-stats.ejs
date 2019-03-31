@@ -1,15 +1,32 @@
 <% if(user && player.nickname == user.username){ %>
 
 <h1>My Career Stats</h1>
+<h1><%= user.username %></h1>
 <span>
-  <form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Recently Played Vehicles" class="waves-effect waves-light btn">
+  <form
+    action="/players/account/<%= user.account_id %>/recent-vehicles"
+    method="GET"
+    class="player-page-button"
+  >
+    <input type="hidden" name="player" value="<%= player.nickname %>" />
+    <input
+      type="submit"
+      value="My Recently Played Vehicles"
+      class="waves-effect waves-light btn"
+    />
   </form>
 
-  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Current Grind List" class="waves-effect waves-light btn">
+  <form
+    action="/players/account/<%= user.account_id %>/current-grind"
+    method="GET"
+    class="player-page-button"
+  >
+    <input type="hidden" name="player" value="<%= player.nickname %>" />
+    <input
+      type="submit"
+      value="My Current Grind List"
+      class="waves-effect waves-light btn"
+    />
   </form>
 </span>
 
@@ -17,24 +34,39 @@
 
 <h1><%= player.nickname %>'s Career Stats</h1>
 
-  <form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Recently Played Vehicles" class="waves-effect waves-light btn">
-  </form>
+<form
+  action="/players/account/<%= player.account_id %>/recent-vehicles"
+  method="GET"
+  class="player-page-button"
+>
+  <input type="hidden" name="player" value="<%= player.nickname %>" />
+  <input
+    type="submit"
+    value="<%= player.nickname %>'s Recently Played Vehicles"
+    class="waves-effect waves-light btn"
+  />
+</form>
 
-  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Current Grind List" class="waves-effect waves-light btn">
-  </form>
+<form
+  action="/players/account/<%= player.account_id %>/current-grind"
+  method="GET"
+  class="player-page-button"
+>
+  <input type="hidden" name="player" value="<%= player.nickname %>" />
+  <input
+    type="submit"
+    value="<%= player.nickname %>'s Current Grind List"
+    class="waves-effect waves-light btn"
+  />
+</form>
 
 <% } %>
-
 
 <table class="striped">
   <thead>
     <tr>
-        <th>All Time</th>
-        <th>Stats</th>
+      <th>All Time</th>
+      <th>Stats</th>
     </tr>
   </thead>
 
@@ -42,16 +74,17 @@
     <tr>
       <td>Trees Cut</td>
       <td>
-        <% if(player.statistics.trees_cut < 60001){ %>
-          <%= player.statistics.trees_cut %>
-        <% } else { %>
-          Over 60001 
-        <% } %>
-        </td>
+        <% if(player.statistics.trees_cut < 60001){ %> <%=
+        player.statistics.trees_cut %> <% } else { %> Over 60001 <% } %>
+      </td>
     </tr>
     <tr>
       <td>Win Rate</td>
-      <td><%= ((player.statistics.all.wins/player.statistics.all.battles)*100).toFixed(2) %>%</td>
+      <td>
+        <%=
+        ((player.statistics.all.wins/player.statistics.all.battles)*100).toFixed(2)
+        %>%
+      </td>
     </tr>
     <tr>
       <td>Battles</td>
@@ -67,11 +100,18 @@
     </tr>
     <tr>
       <td>Draws</td>
-      <td><%= (player.statistics.all.battles - player.statistics.all.wins - player.statistics.all.losses) %></td>
+      <td>
+        <%= (player.statistics.all.battles - player.statistics.all.wins -
+        player.statistics.all.losses) %>
+      </td>
     </tr>
     <tr>
       <td>Survival Rate</td>
-      <td><%= ((player.statistics.all.survived_battles/player.statistics.all.battles)*100).toFixed(2) %>%</td>
+      <td>
+        <%=
+        ((player.statistics.all.survived_battles/player.statistics.all.battles)*100).toFixed(2)
+        %>%
+      </td>
     </tr>
     <tr>
       <td>Player Rating</td>
@@ -79,15 +119,24 @@
     </tr>
     <tr>
       <td>Most XP</td>
-      <td><%= player.statistics.max_xp %> XP in the <%= tanks[player.statistics.max_xp_tank_id].name %></td>
+      <td>
+        <%= player.statistics.max_xp %> XP in the <%=
+        tanks[player.statistics.max_xp_tank_id].name %>
+      </td>
     </tr>
     <tr>
       <td>Most Damage</td>
-      <td><%= player.statistics.max_damage %> damage in the <%= tanks[player.statistics.max_damage_tank_id].name %></td>
+      <td>
+        <%= player.statistics.max_damage %> damage in the <%=
+        tanks[player.statistics.max_damage_tank_id].name %>
+      </td>
     </tr>
     <tr>
       <td>Most Kills</td>
-      <td><%= player.statistics.max_frags %> in the <%= tanks[player.statistics.max_frags_tank_id].name %></td>
+      <td>
+        <%= player.statistics.max_frags %> in the <%=
+        tanks[player.statistics.max_frags_tank_id].name %>
+      </td>
     </tr>
     <tr>
       <td>Last Battle</td>
@@ -100,15 +149,10 @@
   </tbody>
 </table>
 
-<% function convertDate(stamp){ %>
-	<% var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; %>
-	<% var date = new Date(stamp*1000); %>
-	<% var year = date.getFullYear(); %>
-	<% var month = months_arr[date.getMonth()]; %>
-	<% var day = date.getDate(); %>
-	<% var hours = date.getHours(); %>
-	<% var minutes = "0" + date.getMinutes(); %>
-	<% var seconds = "0" + date.getSeconds(); %>
-	<% var displayDate = month+'-'+day+'-'+year %>
-	<% return displayDate %>
-<% } %>
+<% function convertDate(stamp){ %> <% var months_arr =
+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; %> <%
+var date = new Date(stamp*1000); %> <% var year = date.getFullYear(); %> <% var
+month = months_arr[date.getMonth()]; %> <% var day = date.getDate(); %> <% var
+hours = date.getHours(); %> <% var minutes = "0" + date.getMinutes(); %> <% var
+seconds = "0" + date.getSeconds(); %> <% var displayDate =
+month+'-'+day+'-'+year %> <% return displayDate %> <% } %>

@@ -1,215 +1,238 @@
+.container {
+  overflow: visible !important;
+}
+
 /*________________ NAV BAR _____________________*/
 nav {
-	background-color: #000545 !important;
+  background-color: #000545 !important;
 }
 
 .nav-link:hover {
-	background-color: white;
-	color: #000545;
+  background-color: white;
+  color: #000545;
 }
 
 /*________________ HOME PAGE _____________________*/
 
 .homepage-title {
-	text-align: center;
-	width: 100%;
+  text-align: center;
+  width: 100%;
 }
 
 .homepage-subtitle {
-	text-align: center;
+  text-align: center;
 }
 
 .homepage-sub-content {
-	text-align: center;
+  text-align: center;
 }
 
 .homepage-landing {
-	width: 110%;
-	margin: 0 auto;
-	color: black;
+  width: 110%;
+  margin: 0 auto;
+  color: black;
 }
 
 .homepage-tanks {
-	border: 3px solid black;
-	border-radius: 3px;
-	display: inline-block;
-	margin: 5px;
-	color: black;
+  border: 3px solid black;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 5px;
+  color: black;
 }
 
-.homepage-tanks:hover, .homepage-players:hover {
-	background-color: #000545;
-	color: white;
+.homepage-tanks:hover,
+.homepage-players:hover {
+  background-color: #000545;
+  color: white;
 }
 
 .homepage-players {
-	border: 3px solid black;
-	border-radius: 3px;
-	display: inline-block;
-	margin: 5px;
-	color: black;
+  border: 3px solid black;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 5px;
+  color: black;
 }
 
 /*________________ TANK PAGES _____________________*/
 
- .sub-stats {
- 	margin-left: 15px;
- }
+.sub-stats {
+  margin-left: 15px;
+}
 
- .subber-stats {
- 	margin-left: 30px;
- }
+.subber-stats {
+  margin-left: 30px;
+}
 
 .tank-details {
-	font-size: 18px;
-	padding-left: 10px;
+  font-size: 18px;
+  padding-left: 10px;
 }
 
 .tank-display {
- 	background-color: white;
- 	border: 5px solid black;
- 	border-radius: 5px;
- 	padding: 10px 0 10px 10px;
- 	margin: 10px;
- 	position: relative;
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
 }
 
 .tank-display:hover {
-	background-color: #000545;
-	color: white;
-	position: relative;
+  background-color: #000545;
+  color: white;
+  position: relative;
 }
 
 .packages-title {
- 	font-size: 24px !important;
+  font-size: 24px !important;
 }
 
 .standard-values {
- 	font-size: 24px !important;
- }
+  font-size: 24px !important;
+}
 
 .sub-title {
- 	font-size: 24px;
+  font-size: 24px;
 }
 
 .title-btn {
- 	padding-left: 15px !important;
+  padding-left: 15px !important;
 }
 
-.tank-div-button[type=submit] {
-    background-color:transparent;
- 	width: 101%;
- 	height: 50px;
- 	position: absolute;
- 	left: -5px;
- 	top: -5px;
- 	height: 145px;
+.tank-div-button[type="submit"] {
+  background-color: transparent;
+  width: 101%;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  height: 145px;
 }
-
+@media (max-width: 900px) {
+  .tank-div-button[type="submit"] {
+    height: 191px;
+  }
+}
 .tank-display-name {
- 	font-size: 36px;
+  font-size: 36px;
 }
 
 /*________________ PLAYER RECENT PAGES _____________________*/
 
 .player-page-button {
- 	display: inline;
- 	padding: 10px;
+  display: inline;
+  padding: 10px;
 }
 
 .btn {
- 	background-color: #000545 !important;
- 	color: white !important;
+  background-color: #000545 !important;
+  color: white !important;
 }
 
 input.waves-button-input {
- 	color: white;
+  color: white;
 }
 
 .recent-tank-div {
- 	background-color: white;
- 	border: 5px solid blue;
- 	border-radius: 5px;
- 	padding: 10px 0 10px 10px;
- 	margin: 10px;
- 	position: relative;
+  background-color: white;
+  border: 5px solid blue;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
 }
 
-.player-div-button[type=submit] {
-	border: 3px solid transparent;
-    background-color:transparent;
- 	width: 101%;
- 	height: 50px;
- 	position: absolute;
- 	left: -5px;
- 	top: -5px;
- 	height: 179px;
+.player-div-button[type="submit"] {
+  border: 3px solid transparent;
+  background-color: transparent;
+  width: 101%;
+  height: 50px;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  height: 179px;
 }
 
 .player-tank-display {
- 	background-color: white;
- 	border: 5px solid black;
- 	border-radius: 5px;
- 	padding: 10px 0 10px 10px;
- 	margin: 10px;
- 	position: relative;
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
 }
 
 .player-tank-display:hover {
-	background-color: #000545;
-	color: white;
-	position: relative;
-	border: 5px solid black;
- 	border-radius: 5px;
+  background-color: #000545;
+  color: white;
+  position: relative;
+  border: 5px solid black;
+  border-radius: 5px;
 }
 
 /*________________ PLAYER GRIND PAGES _____________________*/
 
 .grind-tank-div {
- 	background-color: white;
- 	border: 5px solid blue;
- 	border-radius: 5px;
- 	padding: 10px 0 10px 10px;
- 	margin: 10px;
- 	position: relative;
+  background-color: white;
+  border: 5px solid blue;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
 }
 
-.grind-div-button[type=submit] {
-	border: 3px solid transparent;
-    background-color:transparent;
- 	width: 101%;
- 	height: 50px;
- 	position: absolute;
- 	left: -5px;
- 	top: -5px;
- 	height: 184px;
+.grind-div-button[type="submit"] {
+  border: 3px solid transparent;
+  background-color: transparent;
+  width: 101%;
+  height: 50px;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  height: 184px;
 }
 
 .grind-tank-display {
- 	background-color: white;
- 	border: 5px solid black;
- 	border-radius: 5px;
- 	padding: 10px 0 10px 10px;
- 	margin: 10px;
- 	position: relative;
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
 }
 
 .grind-tank-display:hover {
-	background-color: #000545;
-	color: white;
-	position: relative;
-	border: 5px solid black;
- 	border-radius: 5px;
+  background-color: #000545;
+  color: white;
+  position: relative;
+  border: 5px solid black;
+  border-radius: 5px;
 }
 
 /*________________ PLAYER GRIND PAGES _____________________*/
 
 .profile-pic {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
+/* --------------------Mobile Stylijng----------------- */
+/* @media only screen and (min-width: 601px) {
+  .dropdown-content {
+    overflow-y: auto !important;
+  }
 
+  .container {
+    width: 100% !important;
+  }
+  form {
+    font: 28px;
+  }
+} */
 
-
-
-
+.dropdown-content li {
+  min-height: 30px;
+}
+.dropdown-content li > span {
+  padding: 5px 16px;
+}

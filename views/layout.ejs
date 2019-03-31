@@ -1,49 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>World of Tanks Tankopedia</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<link rel="stylesheet" type="text/css" href="/style.css">
-</head>
-<body>
-	<nav>
-	    <div class="nav-wrapper">
-	      <a href="/" class="brand-logo title-btn nav-link">World Of Tanks Companion</a>
-	      <ul id="nav-mobile" class="right hide-on-med-and-down">
-	        <li><a href="/tanks/" class="nav-link">Tanks</a></li>
-	        <li><a href="/players/" class="nav-link">Players</a></li>
-	        <% if(!user) { %>
-		    <li><a href="/auth/login" class="nav-link">Login</a></li>
-		    <li><a href="/auth/signup" class="nav-link">Sign Up</a></li>
-		    <% } else { %>
-		    	<% if(user.admin){ %>
-			    	<li><a href="/profile/admin" class="nav-link">Admin</a></li>
-			   	<% } %>
-			    <li><a href="/profile" class="nav-link"><%= user.username %></a></li>
-			    <li><a href="/auth/logout" class="nav-link">Log Out</a></li>
+  <head>
+    <title>World of Tanks Tankopedia</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo right">Home</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="/tanks/" class="nav-link">Tanks</a></li>
+          <li><a href="/players/" class="nav-link">Players</a></li>
+          <% if(!user) { %>
+          <li><a href="/auth/login" class="nav-link">Login</a></li>
+          <li><a href="/auth/signup" class="nav-link">Sign Up</a></li>
+          <% } else { %> <% if(user.admin){ %>
+          <li><a href="/profile/admin" class="nav-link">Admin</a></li>
+          <% } %>
+          <li><a href="/profile" class="nav-link"><%= user.username %></a></li>
+          <li><a href="/auth/logout" class="nav-link">Log Out</a></li>
 
-			<% } %>
-	      </ul>
-	    </div>
-	  </nav>
-	  <div class="container">
-	  	<%- include partials/alerts %>
-		<%- body %>
-	</div>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
 
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-  });
-</script>
-<script>
- document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems);
-  });
-</script>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="/tanks/" class="nav-link">Tanks</a></li>
+      <li><a href="/players/" class="nav-link">Players</a></li>
+      <% if(!user) { %>
+      <li><a href="/auth/login" class="nav-link">Login</a></li>
+      <li><a href="/auth/signup" class="nav-link">Sign Up</a></li>
+      <% } else { %> <% if(user.admin){ %>
+      <li><a href="/profile/admin" class="nav-link">Admin</a></li>
+      <% } %>
+      <li><a href="/profile" class="nav-link"><%= user.username %></a></li>
+      <li><a href="/auth/logout" class="nav-link">Log Out</a></li>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
+      <% } %>
+    </ul>
+
+    <div class="container">
+      <%- include partials/alerts %> <%- body %>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var elems = document.querySelectorAll("select");
+        var instances = M.FormSelect.init(elems);
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var elems = document.querySelectorAll(".collapsible");
+        var instances = M.Collapsible.init(elems);
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var elems = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(elems);
+      });
+    </script>
+  </body>
 </html>

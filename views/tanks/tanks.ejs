@@ -1,50 +1,51 @@
-<h1>Find your tank</h1>
+<h1>Select a tank</h1>
 <form action="/tanks/list" method="GET">
-	<div class="input-field col s12">
-		<select name="nation">
-			<option value="" disabled selected>Choose your nation</option>
-		    <option value="usa">USA</option>
-			<option value="ussr">USSR</option>
-			<option value="germany">Germany</option>
-			<option value="uk">UK</option>
-			<option value="china">China</option>
-			<option value="japan">Japan</option>
-			<option value="france">France</option>
-			<option value="sweden">Sweden</option>
-			<option value="poland">Poland</option>
-			<option value="czech">Czechoslovakia</option>
-			<option value="merc">Mercenary</option>
-		</select>
-		<label>Nation</label>
-	</div>
-	<div class="input-field col s12">
-		<select name="tier">
-			<option value="" disabled selected>Choose your tier</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-		</select>
-		<label for="tier">Tier</label>
-	</div>
-	<div class="input-field col s12">
-		<select name="type">
-			<option value="" disabled selected>Choose your class</option>
-			<option value="lightTank">Light Tanks</option>
-			<option value="mediumTank">Medium Tanks</option>
-			<option value="heavyTank">Heavy Tanks</option>
-			<option value="AT-SPG">Tank Destroyers</option>
-			<option value="SPG">Artillery</option>
-		</select>
-		<label for="type">Class</label>
-	</div>
-	<!-- <div class="input-field col s12">
+  <div>
+    <select name="nation" class="tank-nation initialized">
+      <option value="" disabled selected>Choose your nation</option>
+      <option value="usa">USA</option>
+      <option value="ussr">USSR</option>
+      <option value="germany">Germany</option>
+      <option value="uk">UK</option>
+      <option value="china">China</option>
+      <option value="japan">Japan</option>
+      <option value="france">France</option>
+      <option value="sweden">Sweden</option>
+      <option value="poland">Poland</option>
+      <option value="czech">Czechoslovakia</option>
+      <option value="italy">Italy</option>
+      <option value="merc">Mercenary</option>
+    </select>
+    <label>Nation</label>
+  </div>
+  <div>
+    <select name="tier">
+      <option value="" disabled selected>Choose your tier</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+    <label for="tier">Tier</label>
+  </div>
+  <div>
+    <select name="type">
+      <option value="" disabled selected>Choose your class</option>
+      <option value="lightTank">Light Tanks</option>
+      <option value="mediumTank">Medium Tanks</option>
+      <option value="heavyTank">Heavy Tanks</option>
+      <option value="AT-SPG">Tank Destroyers</option>
+      <option value="SPG">Artillery</option>
+    </select>
+    <label for="type">Class</label>
+  </div>
+  <!-- <div class="input-field col s12">
 		<select name="premium">
 			<option value="" disabled selected>Choose your selection</option>
 			<option value="yes">Yes</option>
@@ -53,10 +54,5 @@
 		</select>
 		<label for="premium">Premium?</label>
 	</div> -->
-	<input type="submit" value="Search">
+  <input type="submit" value="Search" />
 </form>
-
-
-
-
-
