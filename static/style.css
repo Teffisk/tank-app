@@ -108,10 +108,11 @@ nav {
   left: -5px;
   top: -5px;
   height: 145px;
+  border: none;
 }
 @media (max-width: 900px) {
   .tank-div-button[type="submit"] {
-    height: 191px;
+    height: 100%;
   }
 }
 .tank-display-name {
