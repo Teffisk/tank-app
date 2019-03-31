@@ -2,6 +2,10 @@
 
 <h1>My Career Stats</h1>
 <h1><%= user.username %></h1>
+<% if(user.username == "Teffisk") { %>
+  <button onClick=loadTanks()>Load New Tanks</button>
+  <br/>
+<% } %>
 <span>
   <form
     action="/players/account/<%= user.account_id %>/recent-vehicles"
@@ -156,3 +160,4 @@ month = months_arr[date.getMonth()]; %> <% var day = date.getDate(); %> <% var
 hours = date.getHours(); %> <% var minutes = "0" + date.getMinutes(); %> <% var
 seconds = "0" + date.getSeconds(); %> <% var displayDate =
 month+'-'+day+'-'+year %> <% return displayDate %> <% } %>
+
