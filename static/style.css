@@ -28,17 +28,22 @@ nav {
 }
 
 .homepage-landing {
-  width: 110%;
+  max-width: 80vw;
   margin: 0 auto;
   color: black;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
-.homepage-tanks {
+.homepage-tanks,
+.homepage-players {
   border: 3px solid black;
   border-radius: 3px;
   display: inline-block;
-  margin: 5px;
+  margin: 5px auto;
   color: black;
+  width: 40vw;
 }
 
 .homepage-tanks:hover,
@@ -47,12 +52,38 @@ nav {
   color: white;
 }
 
-.homepage-players {
-  border: 3px solid black;
-  border-radius: 3px;
-  display: inline-block;
-  margin: 5px;
-  color: black;
+@media (max-width: 900px) {
+  h1 {
+    font-size: 30px;
+    margin: 10px;
+  }
+
+  /* .container {
+    margin: 0;
+    width: 100%;
+  } */
+
+  .homepage-landing {
+    max-width: 100%;
+    margin: 5px 0;
+  }
+
+  .homepage-subtitle {
+    font-size: 30px;
+  }
+
+  .homepage-tanks,
+  .homepage-players {
+    padding: 0;
+    margin: 5px 0;
+    display: block;
+    width: 100%;
+    border: 2px solid black;
+  }
+
+  .homepage-landing div {
+    width: 100%;
+  }
 }
 
 /*________________ TANK PAGES _____________________*/
@@ -110,6 +141,7 @@ nav {
   height: 145px;
   border: none;
 }
+
 @media (max-width: 900px) {
   .tank-div-button[type="submit"] {
     height: 100%;
@@ -218,18 +250,6 @@ input.waves-button-input {
 }
 
 /* --------------------Mobile Stylijng----------------- */
-/* @media only screen and (min-width: 601px) {
-  .dropdown-content {
-    overflow-y: auto !important;
-  }
-
-  .container {
-    width: 100% !important;
-  }
-  form {
-    font: 28px;
-  }
-} */
 
 .dropdown-content li {
   min-height: 30px;
