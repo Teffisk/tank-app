@@ -42,7 +42,7 @@
 			</span>
 		</h4>
 		<ul>
-			<li>Number of Battles: <%= t.all.battles %></li>
+			<li>Total Battles: <%= t.all.battles %></li>
 			<li>Win Rate: <%= ((t.all.wins/t.all.battles)*100).toFixed(2) %>%</li>
 			<li>Last Battle Date: <%= convertDate(t.last_battle_time) %></li>
 		<% } %>
@@ -96,7 +96,9 @@
 	<% } else if (n == 'france'){ %>
 		<% return 'France' %>
 	<% } else if (n == 'sweden'){ %>
-		<% return 'Sweden' %>		
+		<% return 'Sweden' %>
+	<% } else if (n == 'italy'){ %>
+		<% return 'Italy' %>						
 	<% } else if (n == 'poland'){ %>
 		<% return 'Poland' %>
 	<% } else if (n == 'czech'){ %>
