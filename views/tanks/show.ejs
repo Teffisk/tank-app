@@ -4,7 +4,8 @@
 <% } %>
 
 <% var packages = packs[0].packages %>
-<% var packageName = packs[0].packages_tree %>
+<% var packageName %>
+<% tank.nation != "merc" ? packageName = packs[0].packages_tree : packageName = packs[0].default_package_id %>
 
 
 <h1><%= tank.name %> <span class="sub-title">Tier <%= tank.tier %> | <%= nation(tank.nation) %> | <%= type(tank.type) %></span></h1>
@@ -54,11 +55,11 @@
 	<% break; %>
 <% } %>
 <ul class="collapsible"><span class="packages-title">Packages</span>
-	<% for (var packId in packages) { %>
-		<li>
-			<div class="collapsible-header package-header"><a href="#"></a><%= packageName[packId].type %> - <%= packageName[packId].name %><i class="material-icons"></i></div>
-			<div class="collapsible-body">
-				<table class="striped">
+<% for (var packId in packages) { %>
+<li>
+	<div class="collapsible-header package-header"><a href="#"></a><%= packageName[packId].type %> - <%= packageName[packId].name %><i class="material-icons"></i></div>
+	<div class="collapsible-body">
+		<table class="striped">
 				    <thead>
 				      <tr>
 				          <th>Turret</th>
@@ -116,11 +117,13 @@
 					    <tr>
 					    	<td>Rate of Fire</td>
 					        <td><%= packages[packId].gun.fire_rate %> rounds per minute</td>
-					    </tr>
-					    <tr>
-					    	<td>DPM</td>
-					    	<td><%= (packages[packId].shells[0].damage*packages[packId].gun.fire_rate).toFixed(1) %></td>
-					    </tr>
+							</tr>
+							<% if(packages[packId].shells[0]) { %>
+								<tr>							
+									<td>DPM</td>
+									<td><%= (packages[packId].shells[0].damage*packages[packId].gun.fire_rate).toFixed(1) %></td>
+							</tr>
+							<% } %>
 					    <tr>
 					        <td>Accuracy</td>
 					        <td><%= packages[packId].gun.dispersion %></td>
