@@ -1,0 +1,298 @@
+/* .container {
+  overflow: visible !important;
+} */
+
+body {
+  background-color: #1c1f24;
+  color: #eee;
+}
+
+/*________________ NAV BAR _____________________*/
+nav {
+  background-color: #2e86c1 !important;
+}
+
+.nav-link:hover {
+  background-color: #eee;
+  color: #2e86c1;
+}
+
+nav .brand-logo.right {
+  right: 1rem;
+}
+
+nav .brand-logo.right:hover {
+  right: 1rem;
+  background-color: #eee;
+  color: #2e86c1;
+}
+
+/*________________ HOME PAGE _____________________*/
+
+.homepage-title {
+  text-align: center;
+  width: 100%;
+}
+
+.homepage-subtitle {
+  text-align: center;
+}
+
+.homepage-sub-content {
+  text-align: center;
+}
+
+.homepage-landing {
+  max-width: 80vw;
+  margin: 0 auto;
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.homepage-tanks,
+.homepage-players {
+  background-color: #2e86c1;
+  color: #eee;
+  border: 3px solid black;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 5px auto;
+  width: 40vw;
+}
+
+.homepage-tanks:hover,
+.homepage-players:hover {
+  background-color: #eee;
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 30px;
+    margin: 10px;
+  }
+
+  .homepage-landing {
+    max-width: 100%;
+    margin: 5px 0;
+  }
+
+  .homepage-subtitle {
+    font-size: 30px;
+  }
+
+  .homepage-tanks,
+  .homepage-players {
+    padding: 0;
+    margin: 5px 0;
+    display: block;
+    width: 100%;
+    border: 2px solid black;
+  }
+
+  .homepage-landing div {
+    width: 100%;
+  }
+}
+
+/*________________ TANK PAGES _____________________*/
+
+.sub-stats {
+  margin-left: 15px;
+}
+
+.subber-stats {
+  margin-left: 30px;
+}
+
+.tank-details {
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.tank-display {
+  background-color: #eee;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
+}
+
+.tank-display:hover {
+  background-color: #2e86c1;
+  color: #eee;
+  position: relative;
+}
+
+.packages-title {
+  font-size: 24px !important;
+}
+
+.standard-values {
+  font-size: 24px !important;
+}
+
+.sub-title {
+  font-size: 24px;
+}
+
+.title-btn {
+  padding-left: 15px !important;
+}
+
+.tank-div-button[type="submit"] {
+  cursor: pointer;
+  background-color: transparent;
+  width: 101%;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  height: 145px;
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .tank-div-button[type="submit"] {
+    height: 100%;
+  }
+}
+.tank-display-name {
+  font-size: 36px;
+}
+
+/*________________ PLAYER RECENT PAGES _____________________*/
+
+.player-header {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.waves-effect input[type="submit"] {
+  cursor: pointer;
+}
+
+.player-pages {
+  margin-top: 20px;
+  background: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* button to click  on career stats, recent vehicles, and grind list*/
+.btn {
+  background-color: #2e86c1;
+  color: #eee !important;
+  width: 23vw;
+}
+
+.btn:hover {
+  background-color: #2e86c1;
+}
+
+.disabled-btn {
+  background-color: #2e86c1 !important;
+  color: #2e86c1 !important;
+  width: 23vw;
+}
+
+input.waves-button-input {
+  color: #eee;
+}
+
+.recent-tank-div {
+  background-color: #eee;
+  border: 5px solid blue;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
+}
+
+/* Makes tanks in recent tanks list clickable to the tank page */
+.player-div-button[type="submit"] {
+  cursor: pointer;
+  border: 3px solid transparent;
+  background-color: transparent;
+  width: 101%;
+  height: 50px;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  height: 179px;
+}
+
+.player-tank-display {
+  background-color: #eee;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
+}
+
+.player-tank-display:hover {
+  background-color: #2e86c1;
+  color: #eee;
+  position: relative;
+  border: 5px solid black;
+  border-radius: 5px;
+}
+
+/*________________ PLAYER GRIND PAGES _____________________*/
+
+.grind-tank-div {
+  background-color: #eee;
+  border: 5px solid blue;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
+}
+
+/* Makes tanks in grind list clickable to the tank page */
+.grind-div-button[type="submit"] {
+  border: 3px solid transparent;
+  background-color: transparent;
+  width: 101%;
+  height: 50px;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  height: 184px;
+}
+
+.grind-tank-display {
+  background-color: #eee;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  margin: 10px;
+  position: relative;
+}
+
+.grind-tank-display:hover {
+  background-color: #2e86c1;
+  color: #eee;
+  position: relative;
+  border: 5px solid black;
+  border-radius: 5px;
+}
+
+/*________________ PLAYER GRIND PAGES _____________________*/
+
+.profile-pic {
+  margin-top: 20px;
+}
+
+/* --------------------Mobile Stylijng----------------- */
+
+.dropdown-content li {
+  min-height: 30px;
+}
+.dropdown-content li > span {
+  padding: 5px 16px;
+}
