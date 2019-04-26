@@ -1,33 +1,29 @@
 <% if(user && player.nickname == user.username){ %>
 
-  <h1>My Recently Played Vehicles</h1>
-
-  <form action="/players/account/<%= user.account_id %>/" method="GET"  class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Career Stats" class="waves-effect waves-light btn">
-  </form>
-
-  <form action="/players/account/<%= user.account_id %>/current-grind" method="GET"  class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Current Grind List" class="waves-effect waves-light btn">
-  </form>
+	<h1 class="player-header">My Stats</h1>
 
 <% } else { %>
-
-  <h1><%= player.nickname %>'s Recently Played Vehicles</h1>
-
-  <form action="/players/account/<%= player.account_id %>/" method="GET"  class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Career Stats" class="waves-effect waves-light btn">
-  </form>
-
-  <form action="/players/account/<%= player.account_id %>/current-grind" method="GET"  class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Current Grind List" class="waves-effect waves-light btn">
-  </form>
-
+	<h1 class="player-header"><%= player.nickname %></h1>
 <% } %>
 
+<div class="player-pages">
+
+	<form action="/players/account/<%= player.account_id %>/" method="GET">
+		<input type="hidden" name="player" value="<%= player.nickname %>">
+		<input type="submit" value="Career Stats" class="waves-effect waves-light btn">
+	</form>
+
+	<form>
+		<input type="submit" value="Recently Played Vehicles" class="waves-effect waves-light btn disabled-btn">
+	</form>
+
+	<form action="/players/account/<%= player.account_id %>/current-grind" method="GET">
+		<input type="hidden" name="player" value="<%= player.nickname %>">
+		<input type="submit" value="Current Grind List" class="waves-effect waves-light btn">
+	</form>
+
+</div>
+<h6>All vehicles played, listed in order of most recently played.</h6>
 <% recentTanks.forEach(function(t){ %>
 	<div class="player-tank-display">
 		<span class="tank-display-name"><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %>

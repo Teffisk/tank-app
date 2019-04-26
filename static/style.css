@@ -132,6 +132,7 @@ nav .brand-logo.right {
 }
 
 .tank-div-button[type="submit"] {
+  cursor: pointer;
   background-color: transparent;
   width: 101%;
   position: absolute;
@@ -152,14 +153,38 @@ nav .brand-logo.right {
 
 /*________________ PLAYER RECENT PAGES _____________________*/
 
-.player-page-button {
-  display: inline;
-  padding: 10px;
+.player-header {
+  margin: 20px auto;
+  text-align: center;
 }
 
+.waves-effect input[type="submit"] {
+  cursor: pointer;
+}
+
+.player-pages {
+  margin-top: 20px;
+  background: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* button to click  on career stats, recent vehicles, and grind list*/
 .btn {
-  background-color: #000545 !important;
+  background-color: #000545;
   color: white !important;
+  width: 23vw;
+}
+
+.btn:hover {
+  background-color: #2e86c1;
+}
+
+.disabled-btn {
+  background-color: #2e86c1 !important;
+  color: #000545 !important;
+  width: 23vw;
 }
 
 input.waves-button-input {
@@ -175,7 +200,9 @@ input.waves-button-input {
   position: relative;
 }
 
+/* Makes tanks in recent tanks list clickable to the tank page */
 .player-div-button[type="submit"] {
+  cursor: pointer;
   border: 3px solid transparent;
   background-color: transparent;
   width: 101%;
@@ -214,6 +241,7 @@ input.waves-button-input {
   position: relative;
 }
 
+/* Makes tanks in grind list clickable to the tank page */
 .grind-div-button[type="submit"] {
   border: 3px solid transparent;
   background-color: transparent;

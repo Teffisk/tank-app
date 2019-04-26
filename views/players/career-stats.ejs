@@ -1,16 +1,20 @@
 <% if(user && player.nickname == user.username){ %>
 
-<h1>My Career Stats</h1>
-<h1><%= user.username %></h1>
-<% if(user.username == "Teffisk") { %>
-  <button onClick=loadTanks()>Load New Tanks</button>
-  <br/>
+	<h1 class="player-header">My Stats</h1>
+
+<% } else { %>
+	<h1 class="player-header"><%= player.nickname %></h1>
 <% } %>
-<span>
+
+<div class="player-pages">
+
+  <form>
+    <input type="submit" value="Career Stats" class="waves-effect waves-light btn disabled-btn">
+  </form>
+
   <form
-    action="/players/account/<%= user.account_id %>/recent-vehicles"
+    action="/players/account/<%= player.account_id %>/recent-vehicles"
     method="GET"
-    class="player-page-button"
   >
     <input type="hidden" name="player" value="<%= player.nickname %>" />
     <input
@@ -21,9 +25,8 @@
   </form>
 
   <form
-    action="/players/account/<%= user.account_id %>/current-grind"
+    action="/players/account/<%= player.account_id %>/current-grind"
     method="GET"
-    class="player-page-button"
   >
     <input type="hidden" name="player" value="<%= player.nickname %>" />
     <input
@@ -32,39 +35,10 @@
       class="waves-effect waves-light btn"
     />
   </form>
-</span>
 
-<% } else { %>
+</div>
 
-<h1><%= player.nickname %>'s Career Stats</h1>
-
-<form
-  action="/players/account/<%= player.account_id %>/recent-vehicles"
-  method="GET"
-  class="player-page-button"
->
-  <input type="hidden" name="player" value="<%= player.nickname %>" />
-  <input
-    type="submit"
-    value="<%= player.nickname %>'s Recently Played Vehicles"
-    class="waves-effect waves-light btn"
-  />
-</form>
-
-<form
-  action="/players/account/<%= player.account_id %>/current-grind"
-  method="GET"
-  class="player-page-button"
->
-  <input type="hidden" name="player" value="<%= player.nickname %>" />
-  <input
-    type="submit"
-    value="<%= player.nickname %>'s Current Grind List"
-    class="waves-effect waves-light btn"
-  />
-</form>
-
-<% } %>
+<h6>Overall Career Statistics</h6>
 
 <table class="striped">
   <thead>

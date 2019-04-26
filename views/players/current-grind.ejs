@@ -1,34 +1,29 @@
 <% if(user && player.nickname == user.username){ %>
 
-  <h1>My Current Grind</h1>
-  <h6>These are the tech tree tanks that you have played in the last two weeks, that have a subsequent tank haven't been played.</h6>
-
-  <form action="/players/account/<%= user.account_id %>/" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Career Stats" class="waves-effect waves-light btn">
-  </form>
-
-  <form action="/players/account/<%= user.account_id %>/recent-vehicles" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="My Recently Played Vehicles" class="waves-effect waves-light btn">
-  </form>
+	<h1 class="player-header">My Stats</h1>
 
 <% } else { %>
-
-  <h1><%= player.nickname %>'s Current Grind</h1>
-   <h6>These are the tech tree tanks that <%= player.nickname %> have played in the last two weeks, that have a subsequent tank haven't been played.</h6>
-
-  <form action="/players/account/<%= player.account_id %>/" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Career Stats" class="waves-effect waves-light btn">
-  </form>
-
-  <form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET" class="player-page-button">
-    <input type="hidden" name="player" value="<%= player.nickname %>">
-    <input type="submit" value="<%= player.nickname %>'s Recently Played Vehicles" class="waves-effect waves-light btn">
-  </form>
-
+	<h1 class="player-header"><%= player.nickname %></h1>
 <% } %>
+
+<div class="player-pages">
+
+  <form action="/players/account/<%= player.account_id %>/" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="Career Stats" class="waves-effect waves-light btn">
+  </form>
+
+  <form action="/players/account/<%= player.account_id %>/recent-vehicles" method="GET">
+    <input type="hidden" name="player" value="<%= player.nickname %>">
+    <input type="submit" value="Recently Played Vehicles" class="waves-effect waves-light btn">
+	</form>
+	
+	<form>
+		<input type="submit" value="Current Grind List" class="waves-effect waves-light btn disabled-btn">
+	</form>
+
+</div>
+<h6>These are the tech tree tanks that you have played in the last two weeks, that have a subsequent tank haven't been played.</h6>
 
 
 <% recentTanks.forEach(function(t){ %>
