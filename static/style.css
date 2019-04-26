@@ -12,6 +12,10 @@ nav {
   color: #000545;
 }
 
+nav .brand-logo.right {
+  right: 1rem;
+}
+
 /*________________ HOME PAGE _____________________*/
 
 .homepage-title {
@@ -57,11 +61,6 @@ nav {
     font-size: 30px;
     margin: 10px;
   }
-
-  /* .container {
-    margin: 0;
-    width: 100%;
-  } */
 
   .homepage-landing {
     max-width: 100%;
