@@ -30,11 +30,11 @@
 	<% if (timestamp - t.last_battle_time < 1209600 && dbTanks[(t.tank_id)].tier < 10 && dbTanks[(t.tank_id)].next_tanks.length > 0){ %>
 	<div class="grind-tank-display">
 		<h4><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %>
-			<span class="grind-tank-details">
+			<div class="tank-details">
 				Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
 				| <%= dbTanks[(t.tank_id)] ? nation(dbTanks[(t.tank_id)].nation) : 'ERROR' %> 
 				| <%= dbTanks[(t.tank_id)] ? type(dbTanks[(t.tank_id)].type) : 'ERROR' %>
-			</span>
+			</div>
 		</h4>
 		<ul>
 			<li>Total Battles: <%= t.all.battles %></li>

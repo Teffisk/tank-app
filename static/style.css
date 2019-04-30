@@ -97,7 +97,6 @@ nav .brand-logo.right {
 
 .tank-details {
   font-size: 18px;
-  padding-left: 10px;
 }
 
 .tank-display {
@@ -196,11 +195,9 @@ nav .brand-logo.right {
     padding: 0;
   }
 
-  /* .waves-effect input[type="submit"] {
-    padding: 0;
-    margin: 0;
-    width: 30vw;
-  } */
+  .tank-display-name {
+    margin-bottom: 5px;
+  }
 }
 
 input.waves-button-input {

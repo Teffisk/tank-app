@@ -27,10 +27,10 @@
 <% recentTanks.forEach(function(t){ %>
 	<div class="player-tank-display">
 		<span class="tank-display-name"><%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].name : 'ERROR' %>
-			<span class="tank-details">Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
+			<div class="tank-details">Tier <%= dbTanks[(t.tank_id)] ? dbTanks[(t.tank_id)].tier : 'ERROR' %> 
 			| <%= dbTanks[(t.tank_id)] ? nation(dbTanks[(t.tank_id)].nation) : 'ERROR' %> 
 			| <%= dbTanks[(t.tank_id)] ? type(dbTanks[(t.tank_id)].type) : 'ERROR' %>
-			</span>
+			</div>
 		</span>
 
 		<ul>
