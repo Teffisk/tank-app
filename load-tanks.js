@@ -21,24 +21,29 @@ request(url, function(error, response, body) {
     console.log("From the DB:", nextTanks);
     var images = t.images.big_icon;
     t.images = images;
-    db.tank.destroy({}).then(() => {
-      return db.tank.findOrCreate({
-        where: { tank_id: t.tank_id },
-        defaults: {
-          short_name: t.short_name,
-          name: t.name,
-          description: t.description,
-          price_gold: t.price_gold,
-          nation: t.nation,
-          is_premium: t.is_premium,
-          tag: t.tag,
-          price_credit: t.price_credit,
-          type: t.type,
-          tier: t.tier,
-          images: t.images,
-          next_tanks: nextTanks
-        }
+    db.tank
+      .destroy({
+        where: {},
+        truncate: true
+      })
+      .then(() => {
+        return db.tank.findOrCreate({
+          where: { tank_id: t.tank_id },
+          defaults: {
+            short_name: t.short_name,
+            name: t.name,
+            description: t.description,
+            price_gold: t.price_gold,
+            nation: t.nation,
+            is_premium: t.is_premium,
+            tag: t.tag,
+            price_credit: t.price_credit,
+            type: t.type,
+            tier: t.tier,
+            images: t.images,
+            next_tanks: nextTanks
+          }
+        });
       });
-    });
   });
 });
